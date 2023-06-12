@@ -1,0 +1,168 @@
+<title>Big Project</title>
+
+<!doctype html>
+<html>
+<head>
+    <title>Big Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+        }
+
+        header {
+            height: 85px;
+            background-color: white;
+            color: black;
+            margin-bottom: 15px;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        header>nav {
+            margin: 0 auto;
+            padding: 20px 20px;
+        }
+
+        header>nav>label {
+            font-family: Roboto;
+            font-size: 32px;
+            font-weight:
+            color: black;
+        }
+
+        header>nav>ul {
+            font-family: 'Noto Sans KR', sans-serif;
+            float: right;
+            font-size: 24px;
+            margin-top: 10px;
+            margin-right: 15px;
+            color: #6D6D6D;
+        }
+
+        header>nav>ul>li {
+            float: left;
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        header>nav>ul>li>a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #6D6D6D;
+            font-family: Roboto;
+        }
+
+        .wrap a{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .wrap a:hover{
+            color: inherit;
+        }
+        .p1{
+            position: absolute;
+            width: 197px;
+            height: 52px;
+            left: 195px;
+            top: 200px;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 47px;
+
+            color: #000000;
+        }
+
+        .explain{
+            position: absolute;
+            width: 273px;
+            height: 40px;
+            left: 215px;
+            top: 280px;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 25px;
+            line-height: 35px;
+
+            color: #6D6D6D;
+        }
+
+        .btn {
+            position: absolute;
+            left: 195px;
+            top: 500px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .phone-button,
+        .chat-button,
+        .foreign-button{
+            width: 177px;
+            height: 62px;
+            font-family: Roboto;
+            font-size: 20px;
+            border-radius: 10px;
+            background-color:white;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+        }
+
+        .phone-button:hover,
+        .chat-button:hover,
+        .foreign-button:hover {
+            background-color: #D9D9D9;
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <nav class="wrap">
+        <label>
+            <a href="/">
+                <strong>
+                    Consulting
+                </strong>
+            </a>
+        </label>
+        <!-- ul>li*3>a -->
+        <ul>            
+            {% if request.user.is_authenticated %}
+                <li>{{ request.user.username }}</li>
+                <li><a href="/">home</a></li>
+                <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
+            {% else %}
+                <li><a href="/">home</a></li>
+                <li><a class="nav-link" href="/accounts/login/">login</a></li>
+                <li><a class="nav-link" href="/accounts/signup/">signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+    <p class="p1">Consulting</p>
+    <div class="explain">
+        <p class="explain1">서비스 관련 설명 1</p>
+        <p class="explain2">서비스 관련 설명 2</p>
+        <p class="explain3">서비스 관련 설명 3</p>
+    </div>
+    <div class="btn">
+        <button class="phone-button">전화 상담</button>
+        <button class="chat-button">채팅 상담</button>
+        <button class="foreign-button">Foreign Page</button>
+    </div>
+</body>
+</html>

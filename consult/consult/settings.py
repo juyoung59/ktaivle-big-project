@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os, json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +22,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*fiesn9pn4%tzi=z(&v+6kuxnbcd&)prdmq%$aux48zcqa3jud"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+    
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+        
+SECRET_KEY = get_secret("SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!x
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -39,6 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'  # 유저
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,8 +93,12 @@ WSGI_APPLICATION = "consult.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.mysql' ,
+        'HOST': '127.0.0.1' ,
+        'PORT': '3306',
+        'NAME': 'AIVLEBigProject',
+        'USER': 'root',
+        'PASSWORD': '5787',
     }
 }
 
@@ -116,9 +137,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+
+# 지메일 이메일(발신 이메일)
+EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
+
+#지메일 비밀번호(app pw)
+EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+#TLS보안
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

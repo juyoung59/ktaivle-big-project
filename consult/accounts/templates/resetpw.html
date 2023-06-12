@@ -1,0 +1,141 @@
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+    body {
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: #ffffff;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+    } 
+
+    .login-form {
+        width: 300px;
+        font-family: 'Poppins', sans-serif;
+        background-color: #ffffff;
+        text-align: center;
+    }
+
+    h1 {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 70px;
+        line-height: 70px;
+        color: #000000;
+        white-space: nowrap;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    form {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="submit"],
+    button {
+        width: 500px;
+        height: 50px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    input[type="submit"] {
+        background-color: #434343;
+        color: #ffffff;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 25px;
+        font-family: Roboto;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #717171;
+        color: #000000;
+    }
+    
+    button {
+        background-color: #434343;
+        color: #ffffff;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 25px;
+        font-family: Roboto;
+    }
+
+    button:hover {
+        background-color: #717171;
+        color: #000000;
+    }
+
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        color: #000000;
+        margin-top: 0;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .p1{
+        font-family: 'Roboto', sans-serif;
+        font-size: 22px;
+    }
+
+    .p2{
+        font-family: 'Roboto', sans-serif;
+        font-size: 22px;
+        color: #1948A4;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .p2 a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .p2 a:hover {
+        color: inherit;
+    }
+    
+</style>
+<div class="container">
+    <div class="login-form">
+        <h1>Password Reset</h1>
+        <form method="POST" action="/accounts/send_email/">
+            {% csrf_token %}
+            <!-- <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="Enter your username" required>
+            <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" placeholder="Enter your password" required>
+            <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" placeholder="Check your password" required>  -->
+            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="Enter your username" required>
+            <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" placeholder="Enter your email" required>
+    
+            <!-- <input type="submit" value="Reset Password"> -->
+            <input type="submit" value="Send Email">
+            
+            
+        </form>
+        <div class="login-container">
+            <p class="p1">Already have an account?</p>
+            <p class="p2"><a href="/accounts/login/">Login.</a></p>
+        </div>
+</div>
+{% endblock %}
