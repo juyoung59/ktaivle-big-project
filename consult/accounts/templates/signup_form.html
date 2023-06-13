@@ -1,0 +1,47 @@
+<!-- {% extends 'signup.html' %} -->
+{% load static %}
+<html>
+<head>
+    <title>Sign up</title>
+</head>
+<body>
+    {% block content %}
+    <div class="wrapper">
+        <h1>Sign up</h1>
+
+        <form id="signup-form" method="POST" onsubmit="return validateForm()">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+                {{ field }}
+                {% if field.errors %}
+                <div class="help-block">
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <input type="submit" value="Sign up">
+        </form>
+
+    {% endblock %}
+
+    <script src="{% static 'js/signup.js' %}"></script>
+    <script>
+        // 입력 필드에 에러가 있을 경우, 해당 필드에 에러 표시 클래스를 추가합니다.
+        var form = document.getElementById("signup-form");
+        var fields = form.getElementsByClassName("form-group");
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            if (field.getElementsByClassName("help-block").length > 0) {
+                field.classList.add("has-error");
+            }
+        }
+    </script>
+</body>
+</html>

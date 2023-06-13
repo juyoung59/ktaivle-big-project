@@ -11,3 +11,4 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11)
     member_type = models.CharField(choices=MEMBER_TYPE, max_length=20)
     nation = models.CharField(choices=NATION, max_length=20)
+    

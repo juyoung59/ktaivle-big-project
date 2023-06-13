@@ -52,10 +52,13 @@
         }
 
         small {
-            font-size: 15px;
+            width: 500px;
+            font-size: 14px;
+            font-weight: 500;
             text-align: center;
             margin-top: -10px;
             display: block;
+            color: gray;
         }
 
         input[type="submit"] {
@@ -144,6 +147,10 @@
         .messages {
             color: red;
         }
+
+        .error-input {
+            border-color : red;
+        }
     </style>
 </head>
 <body>
@@ -151,20 +158,20 @@
     <div class="wrapper">
         <h1>Sign up</h1>
         
-        {% if messages %}
+        <!-- {% if messages %}
         <ul class="messages">
             {% for message in messages %}
             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
-        {% endif %}
+        {% endif %} -->
 
-        <form id="signup-form" method="POST" onsubmit="return validateForm()">
+        <form id="signup-form" method="POST" onsubmit="return validateForm()" action="{% url 'signup_form' %}">
             {% csrf_token %}
             
             <label for="{{ form.username.id_for_label }}">Username</label><br>
             <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" maxlength="150" placeholder="Enter your username" required><br>
-            <small>using letters, numbers and @/./+/-/_ in 50 characters.</small><br>
+            <small>use only letters, numbers and @/./+/-/_ in 50 characters.</small><br>
             <!-- <small>50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</small><br> -->
             
             <label for="{{ form.password1.id_for_label }}">Password</label><br>
@@ -181,6 +188,7 @@
             <label for="{{ form.phone_number.id_for_label }}">Phone number</label><br>
             <input type="text" id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.html_name }}" placeholder="01012345678" required><br>
             <!-- <small>'-' 없이 숫자만 입력해주세요. </small><br> -->
+            
             
             <div class="member_type">
                 <label for="{{ form.member_type.id_for_label }}">User type</label><br>
@@ -208,9 +216,24 @@
                     {% endfor %}
                 </select><br>
             </div>
+
+            <!-- {% for field in form %}
+            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+                {{ field }}
+                {% if field.errors %}
+                <div class="help-block">
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %} -->
             
             <input type="submit" value="Sign up">
         </form>
+
         <div class="login-container">
             <p class="p1">Already have an account?</p>
             <p class="p2"><a href="/accounts/login/">Login.</a></p>
@@ -219,6 +242,17 @@
     {% endblock %}
 
     <script src="{% static 'js/signup.js' %}"></script>
+    <!-- <script>
+        // 입력 필드에 에러가 있을 경우, 해당 필드에 에러 표시 클래스를 추가합니다.
+        var form = document.getElementById("signup-form");
+        var fields = form.getElementsByClassName("form-group");
+        for (var i = 0; i < fields.length; i++) {
+            var field = fields[i];
+            if (field.getElementsByClassName("help-block").length > 0) {
+                field.classList.add("has-error");
+            }
+        }
+    </script> -->
 </body>
 </html>
 

@@ -42,9 +42,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -53,6 +51,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'accounts',
+    'chat',
+    'i18n_app',
+    'call',
+    'voice',
+    'foreign',
+    'mypage',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'  # 유저
@@ -60,6 +64,7 @@ AUTH_USER_MODEL = 'accounts.User'  # 유저
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware', 
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -133,6 +138,18 @@ USE_I18N = True
 
 USE_TZ = True
 
+LANGUAGES = [        
+    # 중국 베트남 태국 미국 우즈베키스탄 필리핀 일본
+    ('ko', 'Korean'),
+    ('vi', 'Vietnamese'),
+    ('ti', 'Thai'),
+    ('en-us', 'English'),
+    ('uz-UZ', 'Uzbek'),
+    ('tl', 'Philippines'),
+    ('ja', 'Japan'),
+]
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]       
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

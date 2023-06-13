@@ -1,14 +1,48 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from accounts.forms import LoginForm, SignUpForm
 from django.core.mail.message import EmailMessage
-from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.forms import (
+    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
+)
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.shortcuts import resolve_url
+from django.core.exceptions import ValidationError
+from django.conf import settings
+from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
+from django.views import generic, View
+from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
+from django.views.decorators.http import require_POST
+from django.contrib.auth import (
+    REDIRECT_FIELD_NAME, get_user_model, login as auth_login,
+    logout as auth_logout, update_session_auth_hash,
+)
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.decorators import method_decorator
+# from django.utils.http import is_safe_url, urlsafe_base64_decode
+from django.views.decorators.debug import sensitive_post_parameters
+from django.views.decorators.cache import never_cache
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from chat.models import Chat
+from call.models import Call
 
 User = get_user_model()
+INTERNAL_RESET_URL_TOKEN = 'set-password'
+INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
 
 def index(request):
     return render(request, 'index.html')
@@ -20,13 +54,33 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             return redirect('index')
-        else:
-            messages.error(request, '회원가입에 실패했습니다.')
-            print(form.errors)
+        # else:
+        #     messages.error(request, '회원가입에 실패했습니다.')
+        #     print(form.errors)
+
+        # 유효성 검사 실패, 에러가 있는 경우
+        return render(request, 'signup_form.html', {'form': form})
     else:
         form = SignUpForm()
 
     return render(request, 'signup.html', {'form': form})
+
+def signup_form(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            # 유효성 검사 통과, 회원가입 성공
+            user = form.save()
+            return redirect('index')  # 회원가입 성공 후 이동할 URL
+
+        # 유효성 검사 실패, 에러가 있는 경우
+        return render(request, 'signup_form.html', {'form': form})
+
+    # GET 요청인 경우 signup_form.html 템플릿 렌더링
+    else:
+        form = SignUpForm()
+        
+    return render(request, 'signup_form.html', {'form': form})
 
 def login_view(request):
     if request.user.is_authenticated: 
@@ -52,34 +106,33 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
-def resetpw(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-        else:
-            messages.error(request, '회원가입에 실패했습니다.')
-    else:
-        form = UserCreationForm()
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'password_reset.html'
+    success_url = reverse_lazy('password_reset_done')
+    form_class = PasswordResetForm
     
-    return render(request, 'resetpw.html', {'form': form})
+    def form_valid(self, form):
+        if User.objects.filter(email=self.request.POST.get("email")).exists():
+            return super().form_valid(form)
+        else:
+            return super().form_invalid(form)
+            
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'password_reset_done.html'
+    
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    success_url=reverse_lazy('password_reset_complete')
+    template_name = 'password_reset_confirm.html'
 
+    def form_valid(self, form):
+        return super().form_valid(form)
 
-def send_email(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return HttpResponse('사용자를 찾을 수 없습니다.')
-        
-        
-        subject = "비밀번호 재설정하기"
-        from_email = "ktaivle14@gmail.com"
-        message = "비밀번호 재설정 링크 테스트"
-        email_message = EmailMessage(subject=subject, body=message, to=[user.email], from_email=from_email)
-        email_message.send()
-        return HttpResponse('이메일 전송 완료')
-    else:
-        return HttpResponse('잘못된 요청입니다.')
+class UserPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'password_reset_complete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['login_url'] = resolve_url(settings.LOGIN_URL)
+        return context   
+    

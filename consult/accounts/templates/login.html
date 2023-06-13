@@ -23,6 +23,14 @@
         text-align: center;
     }
 
+    #id_username {
+        margin: 0px 0px 10px 0px;
+    }
+
+    #id_password {
+        margin: 0px 0px 30px 0px;
+    }
+
     h1 {
         font-family: 'Roboto';
         font-style: normal;
@@ -47,6 +55,14 @@
         border-radius: 10px;
         margin-bottom: 20px;
         font-size: 20px;
+    }
+
+    small {
+        font-size: 15px;
+        text-align: center;
+        margin-top: -10px;
+        display: block;
+        white-space: nowrap;
     }
 
     input[type="submit"] {
@@ -151,8 +167,15 @@
         color: red;
     }
     
+    .id_info {
+        font-size: 12px;
+        font-weight: 500;
+        text-align: left;
+        width: 500px;
+        margin: 0px 0px 20px;
+        color: gray;
+    }
 </style>
-
 
 <title>Login</title>
 <div class="container">
@@ -168,13 +191,14 @@
         <form method="POST" id="loginForm" name="loginForm">
             {% csrf_token %}
             <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="Enter your username" required>
+            <small class='id_info'>* use only letters, numbers and @/./+/-/_ in 50 characters.</small>
             <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="Enter your password" required>
             <div class="checkbox-container">
                 <input type="checkbox" id="remember" name="remember" class="checkbox-input">
                 <label for="remember" class="checkbox-label">Remember me</label>
-                <span class="password-reset"><a href="/accounts/resetpw/">Reset password</a></span>
+                <span class="password-reset"><a href="/accounts/password_reset/">Reset password</a></span>
             </div>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" onclick="sendit()">
         </form>
     <div class="signup-container">
         <p class="p1">Don’t have an account?</p>
@@ -182,43 +206,43 @@
     </div>
 </div>
 
-<script>
-    window.onload = function() {
-        if (getCookie("username")) {  
+<script>	
+	window.onload = function() {
+        if (getCookie("username")) { 
             document.loginForm.username.value = getCookie("username"); 
             document.loginForm.remember.checked = true; 
         }
     }
  
-    function setCookie(name, value, expiredays) { // 쿠키 저장 함수
+    function setCookie(name, value, expiredays) {  
         var todayDate = new Date();
         todayDate.setDate(todayDate.getDate() + expiredays);
         document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
     }
  
-    function getCookie(Name) {  // 쿠키 불러오는 함수
+    function getCookie(Name) { 
         var search = Name + "=";
-        if (document.cookie.length > 0) {  // if there are any cookies
+        if (document.cookie.length > 0) { // if there are any cookies
             offset = document.cookie.indexOf(search);
-            if (offset != -1) {  // if cookie exists
-                offset += search.length;  // set index of beginning of value
-                end = document.cookie.indexOf(";", offset);  // set index of end of cookie value
+            if (offset != -1) { // if cookie exists
+                offset += search.length; // set index of beginning of value
+                end = document.cookie.indexOf(";", offset); // set index of end of cookie value
                 if (end == -1)
                     end = document.cookie.length;
                 return unescape(document.cookie.substring(offset, end));
             }
         }
     }
-      
+ 
     function sendit() {
-        if (document.loginForm.remember.checked == true) {  
-            setCookie("username", document.loginForm.username.value, 7);  
-        } 
-        else {  
-            setCookie("username", document.loginForm.username.value, 0);  
+        if (document.loginForm.remember.checked == true) { 
+            setCookie("username", document.loginForm.username.value, 7); 
+        } else { 
+            setCookie("username", document.loginForm.username.value, 0); 
         }
  
-        document.loginForm.submit();  
+        document.loginForm.submit(); 
     }
 </script>
+
 {% endblock %}

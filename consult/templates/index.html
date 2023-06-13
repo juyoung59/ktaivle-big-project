@@ -1,3 +1,4 @@
+
 <title>Big Project</title>
 
 <!doctype html>
@@ -127,6 +128,22 @@
             color: #000000;
         }
 
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 50px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }
+        footer>p{
+            margin: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -142,7 +159,7 @@
         <!-- ul>li*3>a -->
         <ul>            
             {% if request.user.is_authenticated %}
-                <li>{{ request.user.username }}</li>
+                <li><a href="accounts/mypage/">{{ request.user.username }}</a></li>
                 <li><a href="/">home</a></li>
                 <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
             {% else %}
@@ -153,6 +170,7 @@
         </ul>
     </nav>
 </header>
+<main class="contents">
     <p class="p1">Consulting</p>
     <div class="explain">
         <p class="explain1">서비스 관련 설명 1</p>
@@ -160,9 +178,13 @@
         <p class="explain3">서비스 관련 설명 3</p>
     </div>
     <div class="btn">
-        <button class="phone-button">전화 상담</button>
-        <button class="chat-button">채팅 상담</button>
-        <button class="foreign-button">Foreign Page</button>
+        <a href="/call/"><button class="phone-button">전화 상담</button></a>
+        <a href="/chat/"><button class="chat-button">채팅 상담</button></a>
+        <a href="/foreign/"><button class="foreign-button">Foreign Page</button></a>
     </div>
+</main>
+    <footer>
+        <p>All rights reserved. ©KT AIVLESCHOOL 14</p>
+    </footer>
 </body>
 </html>
