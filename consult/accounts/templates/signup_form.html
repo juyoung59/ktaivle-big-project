@@ -3,6 +3,33 @@
 <html>
 <head>
     <title>Sign up</title>
+
+    <style>
+        .help-block {
+            margin-bottom: 5px;
+            color:red;
+            animation:shake 0.5s;
+          }
+
+        @keyframes shake {
+            0% {
+              transform: translateX(0);
+            }
+            25% {
+              transform: translateX(-5px);
+            }
+            50% {
+              transform: translateX(5px);
+            }
+            75% {
+              transform: translateX(-5px);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+          
+    </style>
 </head>
 <body>
     {% block content %}
@@ -19,7 +46,7 @@
                 {% if field.errors %}
                 <div class="help-block">
                     {% for error in field.errors %}
-                    {{ error }}
+                    <span style="color : red; animation: shake 0.5s;">{{ error }}</span>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -28,7 +55,11 @@
 
             <input type="submit" value="Sign up">
         </form>
-
+        <div class="login-container">
+            <p class="p1">Already have an account?</p>
+            <p class="p2"><a href="/accounts/login/">Login.</a></p>
+        </div>
+    </div>
     {% endblock %}
 
     <script src="{% static 'js/signup.js' %}"></script>

@@ -16,7 +16,6 @@ urlpatterns = [
     path("chat/", include('chat.urls')),  
     path('i18n/', include('django.conf.urls.i18n')),
     path('call/', include('call.urls')),
-    path('i18ntest/', i18ntest),
     path('foreign/', include('foreign.urls')),
     path('voice/', include('voice.urls')), 
     path('mypage/', include('mypage.urls')),

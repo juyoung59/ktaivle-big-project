@@ -10,20 +10,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Righteous&family=Roboto&display=swap" rel="stylesheet">
     <style>
         body {
             max-width: 100%;
             margin: 0 auto;
-            background-color: #FFFFFF;
+            /* background: linear-gradient(to bottom, #fff, #FFF1F1); */
+            height: 100%;
+            min-height: 100vh;
+            
         }
 
         header {
-            height: 85px;
+            height: 70px;
             background-color: white;
             color: black;
             margin-bottom: 15px;
             box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            width: 100%;
+            z-index: 9999;
         }
 
         header>nav {
@@ -32,9 +38,9 @@
         }
 
         header>nav>label {
-            font-family: Roboto;
+            font-family: 'Righteous';
+            font-weight:bold;
             font-size: 32px;
-            font-weight:
             color: black;
         }
 
@@ -42,9 +48,9 @@
             font-family: 'Noto Sans KR', sans-serif;
             float: right;
             font-size: 24px;
-            margin-top: 10px;
+            margin-top: -5px;
             margin-right: 15px;
-            color: #6D6D6D;
+            color: black;
         }
 
         header>nav>ul>li {
@@ -56,8 +62,12 @@
         header>nav>ul>li>a {
             text-decoration: none;
             font-weight: bold;
-            color: #6D6D6D;
+            color: black;
             font-family: Roboto;
+        }
+
+        .wrap{
+            max-width:1200px;
         }
 
         .wrap a{
@@ -68,19 +78,22 @@
         .wrap a:hover{
             color: inherit;
         }
+
+        .contents{
+            height: calc(100vh - 30px);
+        }
+
         .p1{
             position: absolute;
             width: 197px;
             height: 52px;
             left: 195px;
-            top: 200px;
-
-            font-family: 'Roboto';
+            top: 150px;
+            font-family: 'Noto Sans KR';
             font-style: normal;
             font-weight: 700;
-            font-size: 30px;
+            font-size: 35px;
             line-height: 47px;
-
             color: #000000;
         }
 
@@ -89,9 +102,9 @@
             width: 273px;
             height: 40px;
             left: 215px;
-            top: 280px;
+            top: 240px;
 
-            font-family: 'Roboto';
+            font-family: 'Noto Sans KR';
             font-style: normal;
             font-weight: 400;
             font-size: 25px;
@@ -100,10 +113,18 @@
             color: #6D6D6D;
         }
 
+        .image img {
+            width: 460px;
+            height: 520px;
+            float: right;
+            margin-right: 100px;
+            margin-top: 130px;
+          }
+
         .btn {
             position: absolute;
             left: 195px;
-            top: 500px;
+            top: 470px;
             display: flex;
             gap: 20px;
         }
@@ -111,11 +132,11 @@
         .phone-button,
         .chat-button,
         .foreign-button{
+            font-family: 'Noto Sans KR';
             width: 177px;
             height: 62px;
-            font-family: Roboto;
             font-size: 20px;
-            border-radius: 10px;
+            border-radius: 30px;
             background-color:white;
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
             cursor: pointer;
@@ -128,63 +149,207 @@
             color: #000000;
         }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+        .container1,
+        .container2,
+        .container3{
             width: 100%;
-            height: 50px;
-            background-color: #f8f8f8;
-            padding: 20px;
-            text-align: center;
-            z-index: 9999;
+            height: 500px;
+            background: linear-gradient(to bottom, #fff, #FFF6DD);
+            display: flex;
+            align-items: center;
         }
-        footer>p{
-            margin: 0;
+
+        .container2{
+            flex-direction: row-reverse
+        }
+        
+        .text-call {
+            font-family: 'Noto Sans KR';
+            text-align: right;
+        }
+        .text-chat {
+            font-family: 'Noto Sans KR';
+            text-align: left;
+        }
+        
+        .img {
+            margin-right: 150px;
+            margin-left: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img2 {
+            margin-right: 150px;
+            margin-left: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img .img{
+            width: 500px;
+            height: 340px;
+        }
+
+        .img2 .img{
+            width: 500px;
+            height: 340px;
+        }
+
+        .more{
+            margin-top: 10px;
+            font-family: Roboto;
+            font-size: 15px;
+            width: 90px;
+            height: 40px;
+            background-color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .more:hover{
+            background-color: #F5F5F5;
+        }
+
+        footer {
+            position: relative;
+            transform: translatY(-100%);
+            bottom: 0;
+            padding-top: 20px;
+            width: 100%;
+            height: 110px;
+            border-top: 1px solid #c4c4c4;
+            color: #808080;
+            background-color: white;
+            margin-top: 30px;
+        }
+        
+        
+
+        footer nav{
+            color: #808080; 
+            font-size: 15px;
+        }
+
+        footer a {
+            display: inline-block;
+            margin: 0 20px 10px 20px;
+            color: #808080; 
+            font-size: 15px;
+            text-decoration: none;
+          }
+          
+          footer a:visited {
+            color: #808080;
+          }
+          
+          footer p {
+            margin-top: 0; 
+            margin-bottom: 0;   
+          }
+          
+          footer p span {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 15px;
+          }
+
+          .rights{
+            display: flex;
+            justify-content: center;
+            bottom: 0;
+            text-align: center;
+            margin-top: 20px;
+            padding-bottom: 20px;
         }
 
     </style>
 </head>
 <body>
-<header>
-    <nav class="wrap">
-        <label>
-            <a href="/">
-                <strong>
-                    Consulting
-                </strong>
-            </a>
-        </label>
-        <!-- ul>li*3>a -->
-        <ul>            
-            {% if request.user.is_authenticated %}
-                <li><a href="accounts/mypage/">{{ request.user.username }}</a></li>
-                <li><a href="/">home</a></li>
-                <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
-            {% else %}
-                <li><a href="/">home</a></li>
-                <li><a class="nav-link" href="/accounts/login/">login</a></li>
-                <li><a class="nav-link" href="/accounts/signup/">signup</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</header>
-<main class="contents">
-    <p class="p1">Consulting</p>
-    <div class="explain">
-        <p class="explain1">서비스 관련 설명 1</p>
-        <p class="explain2">서비스 관련 설명 2</p>
-        <p class="explain3">서비스 관련 설명 3</p>
-    </div>
-    <div class="btn">
-        <a href="/call/"><button class="phone-button">전화 상담</button></a>
-        <a href="/chat/"><button class="chat-button">채팅 상담</button></a>
-        <a href="/foreign/"><button class="foreign-button">Foreign Page</button></a>
-    </div>
-</main>
+    <section>
+        <header>
+            <nav class="wrap">
+                <label>
+                    <a href="/">
+                        <strong>
+                            Consulting
+                        </strong>
+                    </a>
+                </label>
+                <!-- ul>li*3>a -->
+                <ul>            
+                    {% if request.user.is_authenticated %}
+                        <li><a href="/mypage">{{ request.user.username }}</a></li>
+                        <li><a href="/">home</a></li>
+                        <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
+                    {% else %}
+                        <li><a href="/">home</a></li>
+                        <li><a class="nav-link" href="/accounts/login/">login</a></li>
+                        <li><a class="nav-link" href="/accounts/signup/">signup</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <main class="contents">
+            <p class="p1">Consulting</p>
+            <div class="explain">
+                <p class="explain1">서비스 관련 설명 1</p>
+                <p class="explain2">서비스 관련 설명 2</p>
+                <p class="explain3">서비스 관련 설명 3</p>
+            </div>
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2021/10/09/20/51/girl-6695124_1280.png" class="telephone">
+            </div>
+            <div class="btn">
+                <a href="/voice/"><button class="phone-button">전화 상담</button></a>
+                <a href="/chat/"><button class="chat-button">채팅 상담</button></a>
+                <a href="/foreign/"><button class="foreign-button">Foreign Page</button></a>
+            </div>
+        </main>
+        <div class="container1">
+                <div class="img">
+                    <img class="img" src="https://images.unsplash.com/photo-1516055619834-586f8c75d1de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
+                </div>
+                <div class="text-call">
+                    <h1>전화 상담</h1>
+                    <p>상담원과의 전화 상담을 이용해 보세요.<br>상담 종료 후 내용 요약본을 제공합니다.</p>
+                    <a href="/call/"></a><button class="more">more</button></a>
+                </div>
+        </div>
+        <div class="container2">
+            <div class="img2">
+                <img class="img" src="https://images.unsplash.com/photo-1631427962232-803d4f30c64f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
+            </div>
+            <div class="text-chat">
+                <h1>채팅 상담</h1>
+                <p>상담원과의 채팅 상담을 이용해 보세요.<br>상담 종료 후 내용 요약본을 제공합니다.</p>
+                <a href="/chat/"></a><button class="more">more</button></a>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="img">
+                <img class="img" src="https://images.unsplash.com/photo-1534083264897-aeabfc7daf8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="">
+            </div>
+            <div class="text-chat">
+                <h1>Foreign Page</h1>
+                <p>Try consulting using real-time translation.<br>We will provide a summary of the contents at the end of the call.</p>
+                <a href="/foreign/"></a><button class="more">more</button></a>
+            </div>
+        </div>
+    </section>
     <footer>
-        <p>All rights reserved. ©KT AIVLESCHOOL 14</p>
+        <nav>
+            <a href='https://kt.com/' target='_blank'>KT</a> |
+            <a href='https://aivle.kt.co.kr/' target='_blank'>KT AIVLESCHOOL</a>
+        </nav>
+        <p>
+            <span>participants : 강성필 김주열 이유진 이주영 이지현 이채원 채종현</span><br/>
+            <span>email : ktaivle14@gmail.com</span><br/>
+        </p>
+        <p class="rights">All rights reserved. ©KT AIVLESCHOOL 14</p>
     </footer>
 </body>
 </html>
