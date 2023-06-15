@@ -83,7 +83,7 @@
 
         .contents {
             display: block;
-            min-height: calc(100% - 50px);
+            min-height: calc(100% - 12vh);
             align-items: center;
             width: 100%;
             margin: 0 auto;    
@@ -142,6 +142,17 @@
             margin: 10px 50px;
             height: 70vh;
         }
+        
+        .table_title {
+            color: black;
+            text-decoration: underline black;
+        }
+        .table_title:focus,
+        .table_title:hover {
+            display: inline-block;
+            color: gray;
+            text-decoration: underline gray;
+        }
 
         .btn {
             display: flex;
@@ -165,12 +176,24 @@
             color: #000000;
         }
 
+        .delete_btn {
+            color: gray;
+            text-decoration: underline gray;
+        }
+          
+        .delete_btn:focus,
+        .delete_btn:hover {
+            display: inline-block;
+            color: black;
+        }
+
         footer {
             height: 12vh; 
             background-color: #f8f8f8;
             padding: 20px;
             text-align: center;
-            margin-top: 30px;
+            margin: 0;
+            margin-top: 5vh;
         }
         footer>p{
             margin: 0;
@@ -210,85 +233,85 @@
     </style>
 
     <style>
-    /* common */
-    .tab-table {
-        position: relative;
-        overflow: hidden;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 1200px;
-        border-top: 2px solid #121212;
-        background: white;
-    }
-    .tab-table table {
-        display: table;
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-    .tab-table table thead tr th,
-    .tab-table table tbody tr td {
-        text-align: center;
-        padding: 0.8125vw 1.25vw;
-        font-size: 15px;
-        font-size: 1.3vw;
-        line-height: 1.375vw;
-    }
-    .tab-table table thead tr th {
-        border-bottom: 1px solid #121212;
-    }
-    .tab-table table tbody tr td {
-        border-bottom: 1px solid #efefef;
-    }
-
-    /* desktop only */
-    @media screen and (min-width: 1200px) {
+        /* common */
+        .tab-table {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+            border-top: 2px solid #121212;
+            background: white;
+        }
+        .tab-table table {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
         .tab-table table thead tr th,
         .tab-table table tbody tr td {
-            padding: 12px 20px;
-            font-size: 16px;
-            line-height: 22px;
+            text-align: center;
+            padding: 0.8125vw 1.25vw;
+            font-size: 15px;
+            font-size: 1.3vw;
+            line-height: 1.375vw;
         }
-    }
-
-    /* mobile only */
-    @media screen and (max-width: 990px) {
-        .tab-table table col {
-            width: 100% !important;
-        }
-        .tab-table table thead {
-            display: none;
-        }
-        .tab-table table tbody tr {
-            border-bottom: 1px solid #efefef;
+        .tab-table table thead tr th {
+            border-bottom: 1px solid #121212;
         }
         .tab-table table tbody tr td {
-            width: 100%;
-            display: flex;
-            margin-bottom: 2px;
-            padding: 5px;
-            border-bottom: none;
-            font-size: 14px;
-            line-height: 18px;
+            border-bottom: 1px solid #efefef;
         }
-        .tab-table table tbody tr td:first-child, 
-        .tab-table table tbody tr th:first-child {
-            padding-top: 16px;
+
+        /* desktop only */
+        @media screen and (min-width: 1200px) {
+            .tab-table table thead tr th,
+            .tab-table table tbody tr td {
+                padding: 12px 20px;
+                font-size: 16px;
+                line-height: 22px;
+            }
         }
-        .tab-table table tbody tr td:last-child, 
-        .tab-table table tbody tr th:last-child {
-            padding-bottom: 15px;
+
+        /* mobile only */
+        @media screen and (max-width: 990px) {
+            .tab-table table col {
+                width: 100% !important;
+            }
+            .tab-table table thead {
+                display: none;
+            }
+            .tab-table table tbody tr {
+                border-bottom: 1px solid #efefef;
+            }
+            .tab-table table tbody tr td {
+                width: 100%;
+                display: flex;
+                margin-bottom: 2px;
+                padding: 5px;
+                border-bottom: none;
+                font-size: 14px;
+                line-height: 18px;
+            }
+            .tab-table table tbody tr td:first-child, 
+            .tab-table table tbody tr th:first-child {
+                padding-top: 16px;
+            }
+            .tab-table table tbody tr td:last-child, 
+            .tab-table table tbody tr th:last-child {
+                padding-bottom: 15px;
+            }
+            .tab-table table tbody tr td:before {
+                display: inline-block;
+                margin-right: 12px;
+                -webkit-box-flex: 0;
+                -ms-flex: 0 0 100px;
+                flex: 0 0 100px;
+                font-weight: 700;
+                content: attr(data-label);
+            }
         }
-        .tab-table table tbody tr td:before {
-            display: inline-block;
-            margin-right: 12px;
-            -webkit-box-flex: 0;
-            -ms-flex: 0 0 100px;
-            flex: 0 0 100px;
-            font-weight: 700;
-            content: attr(data-label);
-        }
-    }
     </style>
 </head>
 <body>
@@ -371,7 +394,7 @@
                                 <tr>
                                     <th>{{ forloop.counter }}</th>
                                     <th>{{ c.id }}</th>
-                                    <th><a href="{% url 'mypage:chatdetail' c.id %}">CONSULT TITILE</a></th>
+                                    <th><a class="table_title" href="{% url 'mypage:chatdetail' c.id %}">CONSULT TITILE</a></th>
                                     {% if request.user.member_type == 'Customer' %}
                                     <th>{{ c.counselor }}</th>
                                     {% elif request.user.member_type == 'Counselor' %}
@@ -412,7 +435,7 @@
                                 <tr>
                                     <th>{{ forloop.counter }}</th>
                                     <th>{{ c.id }}</th>
-                                    <th><a href="{% url 'mypage:calldetail' c.id %}">CONSULT TITILE</a></th>
+                                    <th><a class="table_title" href="{% url 'mypage:calldetail' c.id %}">CONSULT TITILE</a></th>
                                     {% if request.user.member_type == 'Customer' %}
                                     <th>{{ c.counselor }}</th>
                                     {% elif request.user.member_type == 'Counselor' %}
@@ -431,6 +454,11 @@
                     </table>
                 </div>
             </div>
+        </div>
+
+        
+        <div class="btn">
+            <a href="delete/" class="delete_btn">withdrawal from membership</a>
         </div>
     </main>
 

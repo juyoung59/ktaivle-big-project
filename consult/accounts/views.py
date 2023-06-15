@@ -39,13 +39,16 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from chat.models import Chat
 from call.models import Call
+from django.core import signing                     #추가(0615)
+from django.core.signing import TimestampSigner     #추가
+from django.urls import reverse                     #추가
 
 User = get_user_model()
 INTERNAL_RESET_URL_TOKEN = 'set-password'
 INTERNAL_RESET_SESSION_TOKEN = '_password_reset_token'
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -124,7 +127,6 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
     form_class = SetPasswordForm
     success_url=reverse_lazy('password_reset_complete')
     template_name = 'password_reset_confirm.html'
-
     def form_valid(self, form):
         return super().form_valid(form)
 

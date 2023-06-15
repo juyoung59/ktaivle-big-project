@@ -81,7 +81,7 @@
 
         .contents {
             display: block;
-            min-height: calc(100% - 50px);
+            min-height: calc(100% - 12vh);
             align-items: center;
             width: 100%;
             margin: 0 auto;    
@@ -113,7 +113,7 @@
             color: #000000;
         }
 
-        .userinfo{
+        .update_form{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -128,12 +128,23 @@
 
             color: #6D6D6D;
         }
-        .userinfo_detail {
+        .update_detail {
             display: flex;
             justify-content: space-between;
         }
-        .userinfo_detail>p {
+        .update_detail>p {
             margin: 5px 0px;
+        }
+        .update_detail>label {
+            margin: 5px 0px;
+        }
+        .update_detail>input,
+        .update_detail>select {
+            margin: 5px 0px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 15px;
         }
 
         .consults {
@@ -143,11 +154,11 @@
 
         .btn {
             display: flex;
-            margin: 10px 50px;
+            margin: 10px 0px;
             justify-content: flex-end;
         }
 
-        .update-button{
+        .edit-button{
             width: 150px;
             height: 50px;
             font-family: Roboto;
@@ -157,7 +168,7 @@
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
             cursor: pointer;
         }
-        .update-button:hover {
+        .edit-button:hover {
             background-color: #D9D9D9;
             color: #000000;
         }
@@ -167,7 +178,8 @@
             background-color: #f8f8f8;
             padding: 20px;
             text-align: center;
-            margin-top: 30px;
+            margin: 0;
+            margin-top: 5vh;
         }
         footer>p{
             margin: 0;
@@ -236,29 +248,37 @@
             <p class="p1"><a href="/mypage">MyPage</a> > <a href="/mypage/update">Edit Profile</a></p>
         </div>
 
-        <div class="userinfo">
-            <div class="userinfo_detail">
+        <form method="POST" class="update_form" id="UpdateForm" name="UpdateForm">
+            {% csrf_token %}
+            <div class="update_detail">
                 <p>ID</p>
                 <p>{{ request.user.username }}</p>
             </div>
-            <div class="userinfo_detail">
-                <p>Phone</p>
-                <p>{{ request.user.phone_number }}</p>
+            <div class="update_detail">
+                <label for="{{ form.phone_number.id_for_label }}">Phone number</label>
+                <input type="text" id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.html_name }}" 
+                        placeholder="{{ request.user.phone_number }}" value="{{ form.phone_number.value|default_if_none:'' }}">
             </div>
-            <div class="userinfo_detail">
-                <p>Email</p>
-                <p>{{ request.user.email }}</p>
+            <div class="update_detail">
+                <label for="{{ form.email.id_for_label }}">Email address</label>
+                <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" 
+                placeholder="{{ request.user.email }}" value="{{ form.email.value|default_if_none:'' }}">
             </div>
-            <div class="userinfo_detail">
-                <p>Nation</p>
-                <p>{{ request.user.nation }}</p>
+            <div class="update_detail">
+                <label for="{{ form.nation.id_for_label }}">Language</label>
+                <select id="{{ form.nation.id_for_label }}" name="{{ form.nation.html_name }}">
+                    {% for choice in form.nation.field.choices %}
+                        <option {% if form.nation.value == choice.0 %}selected{% endif %}>
+                            {{ choice.1 }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
-        </div>
 
-        <div class="btn">
-            <a href="update/"><button class="update-button">Edit</button></a>
-        </div>
-    </main>
+            <div class="btn">
+                <input class="edit-button" type="submit" value="Edit" onclick="sendit()">
+            </div>
+        </form>
 
     <footer>
         <p>All rights reserved. ©KT AIVLESCHOOL 14</p>

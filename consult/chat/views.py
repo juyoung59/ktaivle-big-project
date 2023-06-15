@@ -8,3 +8,4 @@ def chat(request):
 def test(request):
     chat = models.Chat.objects.all()
     return render(request, 'chattest.html', {'chat':chat})
+

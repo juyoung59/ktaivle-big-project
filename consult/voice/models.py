@@ -6,4 +6,5 @@ from accounts.models import User
 class Voice(models.Model):
     caller = models.ForeignKey(User, on_delete=models.CASCADE, related_name = 'outgoing_calls')
     reciever = models.ForeignKey(User, on_delete=models.CASCADE, related_name='incoming_calls')
-    
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()

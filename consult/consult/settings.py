@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os, json
 from django.core.exceptions import ImproperlyConfigured
-
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,7 +43,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
+## channels <-- 이거 다른 서드파티 앱이랑 충돌날 수 있어서 맨 위에 두는데 channels위로는 뭐 절대 추가하지 말아주세요!
 INSTALLED_APPS = [
+    'channels',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,7 +58,10 @@ INSTALLED_APPS = [
     'voice',
     'foreign',
     'mypage',
-    'channels',
+    'workerschat',
+    'board',
+    'django_summernote',
+    # 'STT',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'  # 유저
@@ -124,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
+PASSWORD_RESET_TIMEOUT=(300) 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -142,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'static',
 ]
 
 # Default primary key field type

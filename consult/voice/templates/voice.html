@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Call</title>
-    <link rel="stylesheet" href="/static/call.css">
+    <!-- <link rel="stylesheet" href="/static/call.css"> -->
 
     <style>
         body {
@@ -19,7 +19,7 @@
     </style>
 
     <script>
-        let myName;
+        let myName = '{{ username }}';
     </script>
 </head>
 
@@ -27,13 +27,12 @@
     <div>
         <div>
             <!-- to input username and login -->
+
             <div id="userName">
                 <div style="display: flex; flex-direction: column; align-items: center; width: 300px;">
-                    <input placeholder="What should we call you?"
-                        style="text-align:center; height: 50px; font-size: xx-large;" type="text" name=""
-                        id="userNameInput">
+                    
                     <div style="height: 5px;"></div>
-                    <button onclick="login()" class="actionButton">Login</button>
+                    <button onclick="login()" class="actionButton">접속하기</button>
                 </div>
             </div>
 
@@ -42,11 +41,10 @@
                 <div style="display: flex; flex-direction: column; align-items: center; width: 300px;">
                     <h1>Hello, <span id="nameHere"></span></h1>
                 </div>
-
             </div>
 
             <!-- to make a call with name -->
-            <div id="call">
+            <!-- <div id="call">
                 <div class="dialWrapper">
                     <input placeholder="Whom to call?" style="text-align:center; height: 50px; font-size: xx-large;"
                         type="text" name="callName" id="callName">
@@ -61,7 +59,27 @@
                     </div>
 
                 </div>
+            </div> -->
+
+            <div id="call">
+                <div class="dialWrapper">
+                    <select id="callName" style="text-align:center; height: 50px; font-size: xx-large;">
+                        <option value="">Whom to Call?</option>
+                        {% for counselor in counselor_list %}
+                            <option value="{{ counselor.username }}">{{ counselor.username }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="dialNumpadHWrapper">
+                        <div class="dialNumber"></div>
+                        <div class="dialNumber">
+                            <button class="dialActionButton" onclick="call()">Call</button>
+                        </div>
+                        <div class="dialNumber"></div>
+                    </div>
+                </div>
             </div>
+            
+            
 
             <!-- to show incommming call and accept -->
             <div id="answer">
@@ -69,10 +87,6 @@
                     <div class="itemWrapper">
                         <h2>Incomming Call</h2>
                     </div>
-                    <!-- <div class="itemWrapper">
-                        <img id="profileImageA" style="padding: 30px; width: 140px; height: 140px;"
-                            src="/static/profile.png" alt="">
-                    </div> -->
                     <div class="itemWrapper">
                         <h2 style="line-height: 0px;"><span id="callerName"></span></h2>
                     </div>
@@ -88,10 +102,6 @@
                     <div class="itemWrapper">
                         <h2>Calling</h2>
                     </div>
-                    <!-- <div class="itemWrapper">
-                        <img id="profileImageCA" style="padding: 30px; width: 140px; height: 140px;"
-                            src="/static/profile.png" alt="">
-                    </div> -->
                     <div class="itemWrapper">
                         <h3 style="line-height: 0px;"><span id="otherUserNameCA"></span></h3>
                     </div>
@@ -142,7 +152,7 @@
     </script>
     <script>
         function login() {
-            let userName = document.getElementById("userNameInput").value;
+            let userName = '{{ username }}';
             myName = userName;
             document.getElementById("userName").style.display = "none";
             document.getElementById("call").style.display = "block";
