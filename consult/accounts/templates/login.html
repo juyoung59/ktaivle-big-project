@@ -1,249 +1,110 @@
 {% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<style>
-    body {
-        max-width: 100%;
-        margin: 0 auto;
-        background-color: #ffffff;
-    }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        justify-content: center;
-    } 
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <!-- SEO Meta Tags-->
+    <meta name="keywords" content="quicky, chat, messenger, conversation, social, communication" />
+    <meta name="description" content="저희는 kt aivle school 빅프로젝트~~~~~~~~~~~~~~~~~~~~" />
+    <meta name="subject" content="communication">
+    <meta name="copyright" content="frontendmatters">
+     <meta name="revised" content="Tuesday, November 10th, 2020, 08:00 am" />
+    <title>Login</title>
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href='{% static "/consult/workerschat/apple-touch-icon.png" %}'> 
+    <link rel="icon" type="image/png" sizes="32x32" href='{% static "/consult/workerschat/favicon-32x32.png" %}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{% static "/consult/workerschat/favicon-16x16.png" %}'>
+    <link rel="shortcut icon" href='{% static "/consult/workerschat/favicon.ico" %}' />
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-    .login-form {
-        width: 300px;
-        font-family: 'Poppins', sans-serif;
-        background-color: #ffffff;
-        text-align: center;
-    }
+    <link rel="stylesheet" href='{% static "webfonts/inter/inter.css" %}'> 
+    <link rel="stylesheet" href='{% static "css/app.min.css" %}'>
+</head>
 
-    #id_username {
-        margin: 0px 0px 10px 0px;
-    }
-
-    #id_password {
-        margin: 0px 0px 30px 0px;
-    }
-
-    h1 {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 70px;
-        line-height: 70px;
-        color: #000000;
-    }
-
-    form {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="submit"] {
-        width: 500px;
-        height: 50px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        font-size: 20px;
-    }
-
-    small {
-        font-size: 15px;
-        text-align: center;
-        margin-top: -10px;
-        display: block;
-        white-space: nowrap;
-    }
-
-    input[type="submit"] {
-        background-color: #434343;
-        color: #ffffff;
-        cursor: pointer;
-        margin-top: 20px;
-        font-size: 25px;
-        font-family: Roboto;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #717171;
-        color: #000000;
-    }
-
-    .checkbox-container {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start; /* Align checkbox to the left */
-        margin-bottom: 20px;
-    }
-    
-    .checkbox-input {
-        width: 16px;
-        height: 16px;
-        margin-right: 8px;
-    }
-    
-    .checkbox-label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Roboto', sans-serif;
-        font-size: 20px;
-        color: #616161;
-        height: 16px;
-        white-space: nowrap;
-    }
-    
-    .password-reset {
-        margin-left: 190px;
-        font-family: 'Roboto', sans-serif;
-        font-size: 22px;
-        color: #1948A4;
-        cursor: pointer;
-        white-space: nowrap;
-        text-decoration: none;
-    }
-
-    .password-reset a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .password-reset a:hover {
-        color: inherit;
-    }
-
-    .signup-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        color: #000000;
-        margin-top: 0;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    .p1{
-        font-family: 'Roboto', sans-serif;
-        font-size: 22px;
-    }
-
-    .p2{
-        font-family: 'Roboto', sans-serif;
-        font-size: 22px;
-        color: #1948A4;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-
-    .signup{
-        font-family: 'Roboto', sans-serif;
-        font-size: 22px;
-        color: #1948A4;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-
-    .p2 a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .p2 a:hover {
-        color: inherit;
-    }
-
-    .messages {
-        color: red;
-    }
-    
-    .id_info {
-        font-size: 12px;
-        font-weight: 500;
-        text-align: left;
-        width: 500px;
-        margin: 0px 0px 20px;
-        color: gray;
-    }
-</style>
-
-<title>Login</title>
-<div class="container">
-    <div class="login-form">
-        <h1>Login</h1>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <form method="POST" id="loginForm" name="loginForm">
-            {% csrf_token %}
-            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="Enter your username" required>
-            <small class='id_info'>* use only letters, numbers and @/./+/-/_ in 50 characters.</small>
-            <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="Enter your password" required>
-            <div class="checkbox-container">
-                <input type="checkbox" id="remember" name="remember" class="checkbox-input">
-                <label for="remember" class="checkbox-label">Remember me</label>
-                <span class="password-reset"><a href="/accounts/password_reset/">Reset password</a></span>
+<body class="authentication-page">
+    <div class="main-layout card-bg-1">
+        <div class="container d-flex flex-column">
+            <div class="row no-gutters text-center align-items-center justify-content-center min-vh-100">
+                <div class="col-12 col-md-6 col-lg-5 col-xl-4">
+                    <h1 class="font-weight-bold">Login</h1>
+                    <p class="text-dark mb-3">KT는 당신과 함께하고 싶습니다.</p>
+                    <form method="POST" id="loginForm" name="loginForm" class="mb-3">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Username</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control form-control-md" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" placeholder="Enter your username" required>
+                            </div>
+                            <small class='id_info'>* use only letters, numbers and @/./+/-/_ in 50 characters.</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" class="form-control form-control-md" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox-remember" {% if messages %} checked {% endif %}>
+                                <label class="custom-control-label text-muted font-size-sm" for="checkbox-remember">Remember me</label>
+                            </div>
+                            <span class="password-reset"><a href="/accounts/password_reset/">Reset password</a></span>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold" value="Login" onclick="sendit()">
+                    </form>
+                    <p>Don't have an account? <a class="font-weight-semibold" href="{% url 'signup' %}">Sign up</a>.</p>
+                </div>
             </div>
-            <input type="submit" value="Login" onclick="sendit()">
-        </form>
-    <div class="signup-container">
-        <p class="p1">Don’t have an account?</p>
-        <p class="p2"><a href="/accounts/signup/">Sign up.</a></p>
+        </div>
     </div>
-</div>
 
-<script>	
-	window.onload = function() {
-        if (getCookie("username")) { 
-            document.loginForm.username.value = getCookie("username"); 
-            document.loginForm.remember.checked = true; 
-        }
-    }
- 
-    function setCookie(name, value, expiredays) {  
-        var todayDate = new Date();
-        todayDate.setDate(todayDate.getDate() + expiredays);
-        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-    }
- 
-    function getCookie(Name) { 
-        var search = Name + "=";
-        if (document.cookie.length > 0) { // if there are any cookies
-            offset = document.cookie.indexOf(search);
-            if (offset != -1) { // if cookie exists
-                offset += search.length; // set index of beginning of value
-                end = document.cookie.indexOf(";", offset); // set index of end of cookie value
-                if (end == -1)
-                    end = document.cookie.length;
-                return unescape(document.cookie.substring(offset, end));
+    <script>
+        window.onload = function () {
+            if (getCookie("username")) {
+                document.loginForm.username.value = getCookie("username");
+                document.getElementById("checkbox-remember").checked = true;
             }
         }
-    }
- 
-    function sendit() {
-        if (document.loginForm.remember.checked == true) { 
-            setCookie("username", document.loginForm.username.value, 7); 
-        } else { 
-            setCookie("username", document.loginForm.username.value, 0); 
+
+        function setCookie(name, value, expiredays) {
+            var todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
         }
- 
-        document.loginForm.submit(); 
-    }
-    
-</script>
+
+        function getCookie(Name) {
+            var search = Name + "=";
+            if (document.cookie.length > 0) {
+                offset = document.cookie.indexOf(search);
+                if (offset != -1) {
+                    offset += search.length;
+                    end = document.cookie.indexOf(";", offset);
+                    if (end == -1)
+                        end = document.cookie.length;
+                    return unescape(document.cookie.substring(offset, end));
+                }
+            }
+        }
+
+        function sendit() {
+            if (document.getElementById("checkbox-remember").checked) {
+                setCookie("username", document.loginForm.username.value, 7);
+            } else {
+                setCookie("username", document.loginForm.username.value, 0);
+            }
+
+            document.loginForm.submit();
+        }
+    </script>
+</body>
+
+</html>
 
 {% endblock %}

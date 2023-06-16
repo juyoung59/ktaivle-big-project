@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Satisfaction Survey</title>
+</head>
+<body>
+    <h1>Satisfaction Survey</h1>
+    
+      <form action="{% url 'survey:submitted' %}" method="POST">
+        {% csrf_token %}
+        <p>How satisfied are you with our service?</p>
+        <input type="radio" name="satisfaction" value="very_satisfied"> Very Satisfied<br>
+        <input type="radio" name="satisfaction" value="satisfied"> Satisfied<br>
+        <input type="radio" name="satisfaction" value="neutral"> Neutral<br>
+        <input type="radio" name="satisfaction" value="dissatisfied"> Dissatisfied<br>
+        <input type="radio" name="satisfaction" value="very_dissatisfied"> Very Dissatisfied<br>
+        <br>
+        <p>Please provide any additional comments:</p>
+        <textarea name="comments" rows="4" cols="50"></textarea>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

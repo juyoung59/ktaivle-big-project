@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'bootstrap4',
     'accounts',
     'chat',
     'call',
@@ -59,10 +60,12 @@ INSTALLED_APPS = [
     'foreign',
     'mypage',
     'workerschat',
-    'board',
+    'boards',
     'django_summernote',
+    'survey'
     # 'STT',
 ]
+# SUMMERNOTE_CONFIG = {}
 
 AUTH_USER_MODEL = 'accounts.User'  # 유저
 

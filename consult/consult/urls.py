@@ -5,12 +5,12 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')
 
-def home1(request):
-    return render(request, 'home1.html')
+def home2(request):
+    return render(request, 'home3.html')
 
 urlpatterns = [
     path('', home),
-    path('home/', home1),
+    path('home/', home2),
     path('index/', home),
     path("admin/", admin.site.urls),
     path("accounts/", include('accounts.urls')),
@@ -20,9 +20,10 @@ urlpatterns = [
     path('voice/', include('voice.urls')), 
     path('mypage/', include('mypage.urls')),
     path('workerschat/', include('workerschat.urls')), 
-    path('board/', include('board.urls')),
+    path('boards/', include('boards.urls')),
     path('summernote/', include('django_summernote.urls')),
-    path('editor/', include('django_summernote.urls')),
+    path('survey/', include('survey.urls')),
+    # path('editor/', include('django_summernote.urls')),
     # path('STT/', include('STT.urls')),
 ]
 

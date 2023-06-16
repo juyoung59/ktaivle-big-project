@@ -97,6 +97,7 @@
             </div>
 
             <!-- to show outgoing call -->
+            
             <div id="calling">
                 <div class="incomingWrapper">
                     <div class="itemWrapper">
@@ -114,6 +115,9 @@
                     <div class="itemWrapper">
                         <h3>On Call With</h3>
                         <h2 style="line-height: 0px;"><span id="otherUserNameC"></span></h2>
+                        <p id="callDuration">통화 시간: </p>
+                        <a href="/survey/">
+                            <button>Call End</button>
                     </div>
                 </div>
             </div>
@@ -161,6 +165,33 @@
             document.getElementById("userInfo").style.display = "block";
 
             connectSocket();
+        }
+
+
+        let startTime;
+        let endTime;
+    
+        function updateCallDuration() {
+            const duration = new Date() - startTime;
+            const seconds = Math.floor(duration / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            
+            const callDurationElement = document.getElementById("callDuration");
+            callDurationElement.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+    
+        function startCallDuration() {
+            startTime = new Date();
+            setInterval(updateCallDuration, 1000);
+        }
+    
+        document.getElementById("inCall").style.display = "none";
+    
+        function answer() {
+            document.getElementById("answer").style.display = "none";
+            document.getElementById("inCall").style.display = "block";
+            startCallDuration();
         }
     </script>
 </body>

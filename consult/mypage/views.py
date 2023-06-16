@@ -52,6 +52,8 @@ def update(request):
                 email = request.user.email
             form.save()
             return redirect('mypage:mypage')
+        else:
+            return render(request, 'mypage_update.html', {'form':form})
     else:
         form = CustomerChangeForm(instance=request.user)
         return render(request, 'mypage_update.html', {'form':form})

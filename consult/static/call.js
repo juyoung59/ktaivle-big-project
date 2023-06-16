@@ -355,6 +355,7 @@ function stop() {
     document.getElementById("calling").style.display = "none";
     document.getElementById("endAudioButton").style.display = "none"
     otherUser = null;
+    window.location.href = '/survey/';
 }
 
 function callProgress() {
@@ -365,3 +366,24 @@ function callProgress() {
 
     callInProgress = true;
 }
+
+
+var startTime = new Date();
+
+function updateCallDuration() {
+    var currentTime = new Date();
+    var timeDifference = currentTime - startTime;
+    var seconds = Math.floor(timeDifference / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    seconds %= 60;
+    minutes %= 60;
+
+    var durationString = hours.toString().padStart(2, '0') + ':' +
+                         minutes.toString().padStart(2, '0') + ':' +
+                         seconds.toString().padStart(2, '0');
+
+    document.getElementById("callDuration").textContent = "Call Duration: " + durationString;
+}
+
+setInterval(updateCallDuration, 1000);

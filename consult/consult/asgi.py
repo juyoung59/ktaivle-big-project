@@ -13,6 +13,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 import voice.routing
 
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "consult.settings")
 
 # application = get_asgi_application()
