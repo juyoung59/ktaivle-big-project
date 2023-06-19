@@ -12,3 +12,8 @@ class Chat(models.Model):
     consult_date = models.DateTimeField(auto_now_add=True)
     summary = models.TextField()
     satisfaction = models.CharField(choices=SATICFACTION, max_length=1)
+    #########추가
+    timestamp = models.DateTimeField(auto_now_add=True, null=True)
+    
+    def last_10_messages(self):
+        return Chat.objects.order_by('-timestamp').all()[:10]

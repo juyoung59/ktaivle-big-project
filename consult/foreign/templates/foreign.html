@@ -200,8 +200,8 @@
     <main class="contents">
         <div class="nation">
             <label>Language</label><br>
-            <select>
-                <option value="option1">Korean</option>
+            <select id="languageSelect" onchange="changePage()">
+                <option value="option1">Korean</option>   <!-- 외국인 페이지인데 한국어가 필요할까요??? -->
                 <option value="option2">English</option>
                 <option value="option3">Japanese</option>
                 <option value="option4">Chinese</option>
@@ -211,7 +211,7 @@
         </div>
         <div class="image">
         <div class="image-container">
-            <a href="/voice/"><img src="https://cdn-icons-png.flaticon.com/128/159/159052.png" class="telephone"></a>
+            <a id = "callLink" href="/voice/"><img src="https://cdn-icons-png.flaticon.com/128/159/159052.png" class="telephone"></a>
             <p class="image-description">Call</p>
         </div>
         <div class="image-container">
@@ -222,6 +222,37 @@
     </main>
 </section>
 
+<script>
+    function changePage() {
+      var selectValue = document.getElementById("languageSelect").value;
+      var callLink = document.getElementById("callLink");
+      
+      // 셀렉트 태그의 값에 따라 이동할 페이지를 설정
+      switch (selectValue) {
+        case "option1":
+          callLink.href = "/voice/";
+          break;
+        case "option2":
+          callLink.href = "/voice_en/";
+          break;
+        case "option3":
+          callLink.href = "/voice_ja/";
+          break;
+        case "option4":
+          callLink.href = "/voice_ch/";
+          break;
+        case "option5":
+          callLink.href = "/voice_vi/";
+          break;
+        case "option6":
+          callLink.href = "/voice_th/";
+          break;
+        default:
+          callLink.href = "/voice/"; // 기본 페이지 설정
+          break;
+      }
+    }
+  </script>
   
   <footer>
     <nav>

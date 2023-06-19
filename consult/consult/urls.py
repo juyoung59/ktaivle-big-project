@@ -23,7 +23,6 @@ urlpatterns = [
     path('boards/', include('boards.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('survey/', include('survey.urls')),
-    # path('editor/', include('django_summernote.urls')),
     # path('STT/', include('STT.urls')),
 ]
 

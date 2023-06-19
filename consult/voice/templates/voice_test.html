@@ -76,120 +76,10 @@
                   </div>
                   <!-- to input username and login -->
                   <div id="userName">
-                    <button onclick="login()" class="btn btn-sm btn-primary my-4 me-1" >전화 연결하기</button>
+                    <a href="/voice/counselor/"><button class="btn btn-sm btn-primary my-4 me-1" >전화 연결하기</button></a>
                     <a class="btn btn-sm my-2 btn-default" href="#" role="button">Questions? Talk to our team<i class="fas fa-arrow-right ms-2"></i></a>
                   </div>
-                  <div>
-                    <div>
-                        <!-- to input username and login -->
-            
-                        {% comment %} <div id="userName">
-                            <div style="display: flex; flex-direction: column; align-items: center; width: 300px;">
-                                
-                                <div style="height: 5px;"></div>
-                                <button onclick="login()" class="actionButton">접속하기</button>
-                            </div>
-                        </div> {% endcomment %}
-            
-                        <!-- to display current login user information  -->
-                        <div id="userInfo">
-                            <div style="display: flex; flex-direction: column; align-items: center; width: 300px;">
-                                <h1>Hello, <span id="nameHere"></span></h1>
-                            </div>
-                        </div>
-            
-                        <!-- to make a call with name -->
-                        <!-- <div id="call">
-                            <div class="dialWrapper">
-                                <input placeholder="Whom to call?" style="text-align:center; height: 50px; font-size: xx-large;"
-                                    type="text" name="callName" id="callName">
-                                <div class="dialNumpadHWrapper">
-                                    <div class="dialNumber">
-                                    </div>
-                                    <div class="dialNumber">
-                                        <button class="dialActionButton" onclick="call()">Call</button>
-                                    </div>
-                                    <div class="dialNumber">
-                                    </div>
-                                </div>
-            
-                            </div>
-                        </div> -->
-            
-                        <div id="call">
-                            <div class="dialWrapper">
-                                <select id="callName" style="text-align:center; height: 50px; font-size: xx-large;">
-                                    <option value="">상담사를 선택해주세요.</option>
-                                    {% for counselor in counselor_list %}
-                                        <option value="{{ counselor.username }}">{{ counselor.username }}</option>
-                                    {% endfor %}
-                                </select>
-                                <div class="dialNumpadHWrapper">
-                                    <div class="dialNumber"></div>
-                                    <div class="dialNumber">
-                                        {% comment %} <form id="callForm" method="post" action="{% url 'voice:call_complete' %}">
-                                            {% csrf_token %}
-                                            <button class="dialActionButton" name="action" value="start" onclick="call()">Call</button>
-                                            <button class="dialActionButton" name="action" value="stop" onclick="stop()">Stop</button>  
-                                        </form> {% endcomment %}
-                                        <button class="btn btn-sm btn-primary my-4 me-1" name="action" value="start" onclick="call()">Call</button>   
-                                    </div>
-                                    <div class="dialNumber"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-            
-                        <!-- to show incommming call and accept -->
-                        <div id="answer">
-                            <div class="incomingWrapper">
-                                <div class="itemWrapper">
-                                    <h2 style="line-height: 0px;"> <span id="callerName"></span> 님에게 전화 수신 중 </h2>
-                                </div>
-                                <div class="itemWrapper" style="display: flex; flex-direction: row; margin-bottom: 20px;">
-                                    <button class="btn btn-sm btn-primary my-4 me-1" onclick="answer()">Answer</button>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <!-- to show outgoing call -->
-                        <div id="calling">
-                            <div class="incomingWrapper">
-                                <div class="itemWrapper">                                    
-                                    <h2 style="line-height: 0px;"> <span id="otherUserNameCA"></span> 상담사와 연결중입니다.</h2>
-                                    <button class="btn btn-sm btn-primary my-4 me-1" name="action" value="stop" onclick="stop()">Call End</button>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <!-- to show call in progress call -->
-                        <div id="inCall">
-                            <div class="incomingWrapper">
-                                <div class="itemWrapper">
-                                    <h3>On Call With</h3>
-                                    <button class="btn btn-sm btn-primary my-4 me-1" name="action" value="stop" onclick="stop()">Call End</button>
-                                    <h2 style="line-height: 0px;"><span id="otherUserNameC"></span></h2>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <br>
-            
-                        <!-- to show local and remote audio -->
-                        <div id="audios">
-                            <div style="position:absolute; top:0; right:0; padding-right: 20px; padding-top: 20px">
-                                <audio id="localAudio" autoplay muted playsinline></audio>
-                            </div>
-                            <div id="remoteAudioDiv">
-                                <audio id="remoteAudio" autoplay playsinline></audio>
-                            </div>
-                        </div>
-                        <div style="flex-grow: 1;">
-                        </div>
-                    </div>
-            
-                </div>
+
                 </div>
                 <div class="col-md-6 mb-4"><img class="w-100" src="https://cdn.pixabay.com/photo/2015/11/06/11/46/call-center-1026462_1280.jpg" alt="..." /></div>
               </div>
@@ -200,16 +90,6 @@
 
 </main>
 
-    <script src="/static/call.js"></script>
-    <script>
-        document.getElementById("call").style.display = "none";
-        document.getElementById("userInfo").style.display = "none";
-        document.getElementById("answer").style.display = "none";
-        document.getElementById("inCall").style.display = "none";
-        document.getElementById("calling").style.display = "none";
-        document.getElementById("audios").style.display = "none";
-
-    </script>
     <script>
         function login() {
             let userName = '{{ username }}';

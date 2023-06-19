@@ -43,9 +43,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
-## channels <-- 이거 다른 서드파티 앱이랑 충돌날 수 있어서 맨 위에 두는데 channels위로는 뭐 절대 추가하지 말아주세요!
+## channels <-- channels위로는 뭐 절대 추가하지 말아주세요!
 INSTALLED_APPS = [
     'channels',
+    'daphne',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -62,10 +63,9 @@ INSTALLED_APPS = [
     'workerschat',
     'boards',
     'django_summernote',
-    'survey'
+    'survey',
     # 'STT',
 ]
-# SUMMERNOTE_CONFIG = {}
 
 AUTH_USER_MODEL = 'accounts.User'  # 유저
 
@@ -153,6 +153,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -178,3 +181,23 @@ CHANNEL_LAYERS={
         "BACKEND": "channels.layers.InMemoryChannelLayer"
      }
 }
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
+
+# Redis Cache
+CACHES = {  
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379"
+        
+    }
+}
+
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_CACHE_ALIAS = 'default'

@@ -6,6 +6,9 @@
     <title>Sign up</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
     <style>
         body {
             max-width: 100%;
@@ -171,8 +174,9 @@
             {% csrf_token %}
             
             <label for="{{ form.username.id_for_label }}">Username</label><br>
-            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" maxlength="150" placeholder="Enter your username" required><br>
+            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" maxlength="150" placeholder="Enter your username" onchange="usernameCheck()" required><br>
             <small>use only letters, numbers and @/./+/-/_ in 50 characters.</small><br>
+
             <!-- <small>50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</small><br> -->
             
             <label for="{{ form.password1.id_for_label }}">Password</label><br>

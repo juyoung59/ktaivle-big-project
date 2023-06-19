@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{% static "../assets/" %}"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Account</title>
+
+    <meta name="description" content="" />
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{% static "assets/vendor/fonts/boxicons.css" %}" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/css/core.css" class="template-customizer-core-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/vendor/css/theme-default.css" class="template-customizer-theme-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/demo.css" %}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" %}" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="{% static "assets/vendor/js/helpers.js" %}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static "assets/js/config.js" %}"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="/" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Consulting</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/voice/counselor/" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">전화 상담</div>
+              </a>
+            </li>
+
+
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">고객 정보</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item active">
+                  <a href="/voice/account/" class="menu-link">
+                    <div data-i18n="Account">고객 정보</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="/voice/history/" class="menu-link">
+                    <div data-i18n="Notifications">상담 이력</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+            <!-- Forms -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">상담 내용</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="/voice/summary/" class="menu-link">
+                    <div data-i18n="Vertical Form">상담 내용 수기 요약</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Tables -->
+            <li class="menu-item">
+              <a href="tables-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">Tables</div>
+              </a>
+            </li>
+            <!-- Misc -->
+          </ul>
+        </aside>
+
+      
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">고객 정보 /</span> 고객 정보</h4>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card mb-4">
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <div class="card-body">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img
+                          src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-user-5.png" style="width:100px; height:100px;"
+                        />
+                        <div class="button-wrapper">
+
+                          <p class="text-muted mb-0">ooo 고객님의 정보입니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="my-0" />
+                    <div class="card-body">
+                      <form id="formAccountSettings" method="POST" onsubmit="return false">
+                        <div class="row">
+                          <div class="mb-3 col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <span id="firsttName" class="form-control">길동</span>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <span id="lastName" class="form-control">홍</span>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">E-mail</label>
+                            <span id="email" class="form-control">ktaivle14@gmail.com</span>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                            <span id="phoneNumber" class="form-control">010-0000-0000</span>
+                          </div>
+                          <div class="mb-3 col-md-6">
+                            <label for="language" class="form-label">Language</label>
+                            <span id="language" class="form-control">Korean</span>
+                          </div>
+                      </form>
+                    </div>
+                    <!-- /Account -->
+                  </div>
+                  <div class="card">
+                    <h5 class="card-header">Caution!</h5>
+                    <div class="card-body">
+                      <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                          <p class="mb-0">지금 보고있는 창은 고객님의 소중한 개인 정보 입니다. <br> 개인정보 유출에 주의해주세요.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- ============================================-->
+                <!-- <section> begin ============================-->
+                  <section class="py-0 bg-1000">
+        
+                    <div class="container">
+                      <div class="row justify-content-md-between justify-content-evenly py-3">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
+                          <p class="fs--1 my-2 fw-bold text-200">&copy; 2023 KT AIVLESCHOOL 14</p>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- end of .container-->
+          
+                  </section>
+                  <!-- <section> close ============================-->
+                  <!-- ============================================-->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{% static "assets/vendor/libs/jquery/jquery.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/popper/popper.js" %}"></script>
+    <script src="{% static "assets/vendor/js/bootstrap.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" %}"></script>
+
+    <script src="{% static "assets/vendor/js/menu.js" %}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{% static "assets/js/main1.js" %}"></script>
+
+    <!-- Page JS -->
+    <script src="{% static "assets/js/pages-account-settings-account.js" %}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

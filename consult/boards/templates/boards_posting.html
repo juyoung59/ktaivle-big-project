@@ -240,9 +240,11 @@
             <div class="post_detail">
                 <label for="{{ form.category.id_for_label }}">Category</label>
                 <select id="{{ form.category.id_for_label }}" name="{{ form.category.html_name }}">
+                    <!-- Customer는 Inquiry 카테고리만 작성 가능 -->
                     {% if request.user.member_type == 'Customer' %}
                         <option value="FAQ" disabled>FAQ</option>
                         <option value="Inquiry">Inquiry</option>
+                    <!-- Counselor는 FAQ 카테고리만 작성 가능 -->
                     {% elif request.user.member_type == 'Counselor' %}
                         <option value="FAQ">FAQ</option>
                         <option value="Inquiry" disabled>Inquiry</option>
@@ -252,7 +254,7 @@
             
             <div class="post_detail post_text">
                 <label for="{{ form.detail.id_for_label }}">Contents</label>
-                <textarea id="{{ form.detail.id_for_label }}", name="{{ form.password1.html_name }}"></textarea>
+                {{ form.detail|safe }}
             </div>
 
             <div class="btn">

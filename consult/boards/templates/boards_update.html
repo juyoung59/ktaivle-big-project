@@ -249,7 +249,7 @@
             
             <div class="update_detail post_text">
                 <label for="{{ form.detail.id_for_label }}">Contents</label>
-                {{ form.detail }}
+                {{ form.detail|safe }}
             </div>
 
             <div class="btn">

@@ -136,6 +136,13 @@
             margin: 20px 0px;
         }
 
+        .post_detail_box{
+            height: 80vh;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+
         .post_text {
             flex-direction: column;
         }
@@ -306,10 +313,11 @@
             
             <div class="post_detail post_text">
                 <p>Contents</p>
-                <textarea readonly>{{ post.detail }}</textarea>
+                <div class="post_detail_box">{{ post.detail|safe }}</div>
             </div>
         </div>
         
+        <!-- Inquiry만 댓글 작성 가능 -->
         {% if post.category == 'Inquiry' %}
             {% for r in reply %}
             <div class="reply-wrap reply_form">
@@ -329,6 +337,7 @@
             {% endfor %}
         {% endif %}
 
+        <!-- 댓글 작성은 Counselor만 가능 -->
         {% if post.category == 'Inquiry' and request.user.member_type == 'Counselor' %}
         <form method="POST" class="reply_form" id="ReplyForm" name="ReplyForm" action="{% url 'boards:creply' post.id %}">
             {% csrf_token %}
@@ -346,6 +355,7 @@
         </form>
         {% endif %}
 
+        <!-- 글 작성자만 글 삭제 가능 -->
         {% if post.writer == request.user %}
         <div class="btns">
             <div class="btn">

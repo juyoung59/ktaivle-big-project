@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{% static "assets/" %}"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>counselor</title>
+
+    <meta name="description" content="" />
+
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{% static "assets/vendor/fonts/boxicons.css" %}" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/css/core.css" class="template-customizer-core-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/vendor/css/theme-default.css" class="template-customizer-theme-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/demo.css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/counselor.css" %}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" %}" />
+
+    <link rel="stylesheet" href="{% static "assets/vendor/libs/apex-charts/apex-charts.css" %}" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="{% static "assets/vendor/js/helpers.js" %}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static "assets/js/config.js" %}"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="/" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">Consulting</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item active">
+              <a href="/voice/counselor/" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">전화 상담</div>
+              </a>
+            </li>
+
+
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">고객 정보</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="/voice/account/" class="menu-link">
+                    <div data-i18n="Account">고객 정보</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="/voice/history/" class="menu-link">
+                    <div data-i18n="Notifications">상담 이력</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            
+            <!-- Forms -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Form Layouts">상담 내용</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="/voice/summary/" class="menu-link">
+                    <div data-i18n="Vertical Form">상담 내용 수기 요약</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- Tables -->
+            <li class="menu-item">
+              <a href="tables-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">Tables</div>
+              </a>
+            </li>
+            <!-- Misc -->
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-lg-8 mb-4 order-0">
+                    <div class="card">
+                        <div class="d-flex align-items-end row">
+                            <div class="col-sm-7">
+                              <div class="card-body">
+                                <div id="userInfo">
+                                <h5 class="card-title text-primary">안녕하세요 <span id="nameHere"></span> 상담사님!</h5>
+                                </div>
+                                {% comment %} <p class="mb-4">
+                                    전화 상담을 진행한지 <span class="fw-bold">00분 00초</span> 경과되었습니다.
+                                </p> {% endcomment %}
+                                <div id="userName">
+                                </div>
+                                <div>
+                                  <div>
+                          
+                                      <div id="call">
+                                          <div class="dialWrapper">
+                                              <select id="callName" style="text-align:center; width: 300px; height: 40px; font-size: 20px; border-radius:5px;">
+                                                  <option value="">상담사를 선택해주세요.</option>
+                                                  {% for counselor in counselor_list %}
+                                                      <option value="{{ counselor.username }}">{{ counselor.username }}</option>
+                                                  {% endfor %}
+                                              </select>
+                                              <div class="dialNumpadHWrapper">
+                                                  <div class="dialNumber"></div>
+                                                  <div class="dialNumber">
+                                                      <button class="btn btn-sm btn-outline-primary" name="action" value="start" onclick="call()">Call</button>   
+                                                  </div>
+                                                  <div class="dialNumber"></div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                          
+                                      <!-- to show incommming call and accept -->
+                                      <div id="answer">
+                                          <div class="incomingWrapper">
+                                              <div class="itemWrapper">
+                                                  <h2 style="line-height: 0px;"> <span id="callerName"></span> 님에게 전화 수신 중 </h2>
+                                              </div>
+                                              <div class="itemWrapper" style="display: flex; flex-direction: row; margin-bottom: 20px;">
+                                                  <button class="btn btn-sm btn-outline-primary" onclick="answer()">Answer</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                          
+                                      <!-- to show outgoing call -->
+                                      <div id="calling">
+                                          <div class="incomingWrapper">
+                                              <div class="itemWrapper">                                    
+                                                  <h2> <span id="otherUserNameCA"></span> 상담사와 연결중입니다.</h2>
+                                                  <button class="btn btn-sm btn-outline-primary" name="action" value="stop" onclick="stop()">Call End</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                          
+                                      <!-- to show call in progress call -->
+                                      <div id="inCall">
+                                          <div class="incomingWrapper">
+                                              <div class="itemWrapper">
+                                                  <h3>On Call With</h3>
+                                                  <button class="btn btn-sm btn-outline-primary" name="action" value="stop" onclick="stop()">Call End</button>
+                                                  <h2 style="line-height: 0px;"><span id="otherUserNameC"></span></h2>
+                                              </div>
+                                          </div>
+                                      </div>
+                          
+                                      <br>
+                          
+                                      <!-- to show local and remote audio -->
+                                      <div id="audios">
+                                          <div style="position:absolute; top:0; right:0; padding-right: 20px; padding-top: 20px">
+                                              <audio id="localAudio" autoplay muted playsinline></audio>
+                                          </div>
+                                          <div id="remoteAudioDiv">
+                                              <audio id="remoteAudio" autoplay playsinline></audio>
+                                          </div>
+                                      </div>
+                                      <div style="flex-grow: 1;">
+                                      </div>
+                                  </div>
+              
+                          </div>
+      
+                                
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+                
+                <!-- Total Revenue -->
+                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                    <div class="row row-bordered g-0">
+                      <div class="col-md-8">
+                        <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+                        <div id="totalRevenueChart" class="px-2"></div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                type="button"
+                                id="growthReportId"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                2022
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                                <a class="dropdown-item" href="javascript:void(0);">2021</a>
+                                <a class="dropdown-item" href="javascript:void(0);">2020</a>
+                                <a class="dropdown-item" href="javascript:void(0);">2019</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="growthChart"></div>
+                        <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
+
+                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                          <div class="d-flex">
+                            <div class="me-2">
+                              <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                            </div>
+                            <div class="d-flex flex-column">
+                              <small>2022</small>
+                              <h6 class="mb-0">$32.5k</h6>
+                            </div>
+                          </div>
+                          <div class="d-flex">
+                            <div class="me-2">
+                              <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
+                            </div>
+                            <div class="d-flex flex-column">
+                              <small>2021</small>
+                              <h6 class="mb-0">$41.2k</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Total Revenue -->
+
+                
+            <!-- / Content -->
+        
+        
+                
+        
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- ============================================-->
+                <!-- <section> begin ============================-->
+                    <section class="py-0 bg-1000">
+        
+                        <div class="container">
+                          <div class="row justify-content-md-between justify-content-evenly py-3">
+                            <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
+                              <p class="fs--1 my-2 fw-bold text-200">&copy; 2023 KT AIVLESCHOOL 14</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end of .container-->
+              
+                      </section>
+                      <!-- <section> close ============================-->
+                      <!-- ============================================-->
+
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="/static/call.js"></script>
+    <script>
+        document.getElementById("call").style.display = "none";
+        document.getElementById("userInfo").style.display = "none";
+        document.getElementById("answer").style.display = "none";
+        document.getElementById("inCall").style.display = "none";
+        document.getElementById("calling").style.display = "none";
+        document.getElementById("audios").style.display = "none";
+
+    </script>
+    <script>
+
+        window.onload = function() {
+          login();
+        };
+
+        function login() {
+            let userName = '{{ username }}';
+            myName = userName;
+            document.getElementById("userName").style.display = "none";
+            document.getElementById("call").style.display = "block";
+
+            document.getElementById("nameHere").innerHTML = userName;
+            document.getElementById("userInfo").style.display = "block";
+
+            connectSocket();
+        }
+    </script>
+    <script src="{% static "assets/vendor/libs/jquery/jquery.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/popper/popper.js" %}"></script>
+    <script src="{% static "assets/vendor/js/bootstrap.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" %}"></script>
+
+    <script src="{% static "assets/vendor/js/menu.js" %}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{% static "assets/vendor/libs/apex-charts/apexcharts.js" %}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static "assets/js/main1.js" %}"></script>
+
+    <!-- Page JS -->
+    <script src="{% static "assets/js/dashboards-analytics.js" %}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>
