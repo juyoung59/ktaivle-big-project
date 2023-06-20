@@ -1,0 +1,27 @@
+.app-brand .app-brand-link {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+select.btn-outline-primary {
+    color: #696cff;
+    width: 100%;
+    font-size: 0.9375rem;
+  }
+
+select.btn-outline-primary:focus {
+    background-color: white;
+    color: #696cff;
+  }
+
+  
+
+  .btn-group{
+    width: 100%;
+  }
+  
+  .text-center{
+    margin-top: 10px;
+  }

@@ -11,6 +11,12 @@ def boards(request):
         
     return render(request, 'boards.html', {'posts_faq':posts_faq, 'posts_inquiry':posts_inquiry})
 
+def test(request):
+    posts_faq = Post.objects.filter(category="FAQ")
+    posts_inquiry = Post.objects.filter(category="Inquiry")
+        
+    return render(request, 'boards_test.html', {'posts_faq':posts_faq, 'posts_inquiry':posts_inquiry})
+
 @login_required
 def posting(request):
     if request.method == 'POST':
@@ -44,6 +50,12 @@ def inquiry_detail(request, bpk):
     post = Post.objects.get(id=bpk)
     reply = post.reply_set.all()
     return render(request, 'boards_detail.html', {'post':post, 'url':url, 'reply':reply})
+
+def test_detail(request, bpk):
+    url = 'inquiry_detail' + '/' + bpk
+    post = Post.objects.get(id=bpk)
+    reply = post.reply_set.all()
+    return render(request, 'test_detail.html', {'post':post, 'url':url, 'reply':reply})
 
 @login_required
 @require_http_methods(['GET', 'POST'])

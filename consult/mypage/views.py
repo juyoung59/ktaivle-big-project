@@ -14,10 +14,10 @@ from django.contrib.auth import logout
 @login_required
 def mypage(request):
     if request.user.member_type == 'Customer':
-        chats = Chat.objects.filter(customer=request.user.id)
+        chats = Chat.objects.filter(user=request.user.id)
         calls = Call.objects.filter(customer=request.user.id)
     elif request.user.member_type == 'Counselor':
-        chats = Chat.objects.filter(counselor=request.user.id)
+        chats = Chat.objects.filter(user=request.user.id)
         calls = Call.objects.filter(counselor=request.user.id)
         
     return render(request, 'mypage.html', {'chats':chats, 'calls':calls})
@@ -42,7 +42,7 @@ def calldetail(request, cpk):
 @require_http_methods(['GET', 'POST'])
 def update(request):
     if request.method == 'POST':
-        form = CustomerChangeForm(request.POST, instance=request.user)
+        form = CustomerChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             phone_number = form.cleaned_data['phone_number']
             email = form.cleaned_data['email']

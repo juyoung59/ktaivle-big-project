@@ -1,263 +1,258 @@
-
-<!-- accounts/templates/signup.html -->
 {% load static %}
-<html>
-<head>
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+  lang="en"
+  class="light-style customizer-hide"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{% static "assets/" %}"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
     <title>Sign up</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta name="description" content="" />
 
-    <style>
-        body {
-            max-width: 100%;
-            margin: 0 auto;
-            background-color: #ffffff;
-        }
 
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
-        h1 {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 70px;
-            line-height: 70px;
-            color: #000000;
-        }
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{% static "assets/vendor/fonts/boxicons.css" %}" />
 
-        form {
-            margin-top: 10px;
-            
-        }
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/css/core.css" class="template-customizer-core-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/vendor/css/theme-default.css" class="template-customizer-theme-css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/demo.css" %}" />
+    <link rel="stylesheet" href="{% static "assets/css/register.css" %}" />
 
-        label {
-            font-size: 20px;
-            font-family: Roboto;
-            font-weight: bold;
-        }
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" %}" />
 
-        input[type="text"],
-        input[type="password"],
-        input[type="submit"],
-        input[type="email"],
-        select {
-            width: 500px;
-            height: 50px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{% static "assets/vendor/css/pages/page-auth.css" %}" />
+    
+    <!-- Helpers -->
+    <script src="{% static "assets/vendor/js/helpers.js" %}"></script>
 
-        small {
-            width: 500px;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-            margin-top: -10px;
-            display: block;
-            color: gray;
-        }
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static "assets/js/config.js" %}"></script>
+  </head>
 
-        input[type="submit"] {
-            background-color: #434343;
-            color: #ffffff;
-            cursor: pointer;
-            margin-top: 20px;
-            font-size: 25px;
-            font-family: Roboto;
-        }
+  <body>
+    <!-- Content -->
+    <div class="container-xxl">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="layout-wrapper layout-content-navbar">
+          <div class="layout-container">
+    
+                        <!-- Modal Scroll long content -->
+                        <div class="col-lg-4 col-md-3">
+                          <!-- Modal -->
+                          <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="modalLongTitle">개인정보 보호 정책 및 이용 약관</h5>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>
+                                    개인정보 보호 정책:
+                                  </p>
+                                  <p>
+                                    1. 수집하는 개인정보 항목: 저희는 사용자가 서비스를 이용할 때 수집되는 개인정보를 최소화합니다. 주로 수집하는 정보는 이름, 이메일 주소, 연락처 등 사용자가 직접 제공하는 정보입니다.
+                                  </p>
+                                  <p>
+                                    2. 개인정보의 이용 목적: 수집한 개인정보는 다음과 같은 목적으로 이용될 수 있습니다:
 
-        input[type="submit"]:hover {
-            background-color: #717171;
-            color: #000000;
-        }
+                                      - 사용자의 서비스 이용에 필요한 기능 제공
+                                      - 서비스 개선 및 맞춤화
+                                      - 사용자에게 관련 정보나 업데이트 제공
+                                      - 법적 의무의 이행
+                                  </p>
+                                  <p>
+                                    3. 개인정보의 보관 기간: 개인정보는 사용자가 서비스 이용을 계속하는 동안에 한하여 보관되며, 보관 기간이 만료되거나 사용자의 요청에 따라 파기됩니다.
+                                  </p>
+                                  <p>
+                                    4. 개인정보의 제공 및 공유: 저희는 사용자의 동의 없이 개인정보를 제3자와 공유하지 않습니다. 단, 법적인 의무나 요청이 있는 경우에 한하여 예외적으로 개인정보를 제공할 수 있습니다.
+                                  </p>
+                                  <p>
+                                    <br>이용 약관:
+                                  </p>
+                                  <p>
+                                    1. 서비스 이용: 저희 서비스는 사용자가 약관에 동의한 경우에 한하여 이용할 수 있습니다. 사용자는 서비스 이용 시 관련 법률 및 규정을 준수해야 합니다.
+                                  </p>
+                                  <p>
+                                    2. 지적 재산권: 서비스에 포함된 모든 콘텐츠와 자료의 지적 재산권은 저희에게 소유권이 있습니다. 사용자는 상업적으로 이를 이용하거나 복제, 배포할 수 없습니다.
+                                  </p>
+                                  <p>
+                                    3. 책임 제한: 저희는 서비스 이용으로 발생한 손해에 대해 어떠한 책임도 지지 않습니다. 사용자는 자체적으로 콘텐츠를 판단하고 사용해야 합니다.
+                                  </p>
+                                  <p>
+                                    4. 이용 약관의 변경: 저희는 약관을 개정할 수 있으며, 변경 내용은 서비스를 통해 공지됩니다. 사용자는 변경된 약관에 동의하지 않을 경우 서비스 이용을 중단할 수 있습니다.
+                                  </p>
+                                  <p>
+                                    <br>위 개인정보 보호 정책 및 이용 약관은 사용자와 저희 사이의 서비스 이용에 적용되며, 정확하고 투명한 개인정보 처리를 위해 최선을 다하고 있습니다.
+                                  </p>
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                                    확인
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>                    
+                        </div>
+        <div class="authentication-inner">
+          <!-- Register Card -->
+          <div class="card">
+            <div class="card-body">
+              <!-- Logo -->
+              <div class="app-brand justify-content-center">
+                <a href="/" class="app-brand-link gap-2">
+                  <span class="app-brand-text demo text-body fw-bolder">Sign up</span>
+                </a>
+              </div>
+              <!-- /Logo -->
 
-        .member_type {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-bottom: 10px;
-
-        }
-
-        .member_type label[for="{{ form.member_type.id_for_label }}"] {
-            font-size: 20px;
-            font-family: Roboto;
-            font-weight: bold;
-            margin-bottom: -10px;
-        }
-
-        .member_type label {
-            display: inline-block;
-            margin-bottom: 5px;
-            font-weight: normal;
-            font-size: 18px;
-        
-            
-        }
-
-        .nation label[for="{{ form.nation.id_for_label }}"] {
-            font-size: 20px;
-            font-family: Roboto;
-            font-weight: bold;
-            margin-bottom: -10px;
-        }
-
-        .nation label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .login-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            color: #000000;
-            margin-top: 0;
-            margin-bottom: 50px;
-            width: 100%;
-        }
-
-        .p1{
-            font-family: 'Roboto', sans-serif;
-            font-size: 22px;
-        }
-
-        .p2{
-            font-family: 'Roboto', sans-serif;
-            font-size: 22px;
-            color: #1948A4;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-        
-        .p2 a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .p2 a:hover {
-            color: inherit;
-        }
-
-        .messages {
-            color: red;
-        }
-
-        .error-input {
-            border-color : red;
-        }
-    </style>
-</head>
-<body>
-    {% block content %}
-    <div class="wrapper">
-        <h1>Sign up</h1>
-        
-        <!-- {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %} -->
-
-        <form id="signup-form" method="POST" onsubmit="return validateForm()" action="{% url 'signup_form' %}">
-            {% csrf_token %}
-            
-            <label for="{{ form.username.id_for_label }}">Username</label><br>
-            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" maxlength="150" placeholder="Enter your username" onchange="usernameCheck()" required><br>
-            <small>use only letters, numbers and @/./+/-/_ in 50 characters.</small><br>
-
-            <!-- <small>50자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</small><br> -->
-            
-            <label for="{{ form.password1.id_for_label }}">Password</label><br>
-            <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" placeholder="Enter your password" required><br>
-            <small>at least 8 characters which combined with upper/lower, numeric and special </small><br>
-            <!-- <small>영문 대 소문자/숫자/특수문자 조합으로 8자 이상만 가능합니다 </small><br> -->
-            
-            <label for="{{ form.password2.id_for_label }}">Check Password</label><br>
-            <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" placeholder="Check your password" required><br>
-
-            <label for="{{ form.email.id_for_label }}">Email address</label><br>
-            <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" placeholder="Enter your Email address" required><br>
-
-            <label for="{{ form.phone_number.id_for_label }}">Phone number</label><br>
-            <input type="text" id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.html_name }}" placeholder="01012345678" required><br>
-            <!-- <small>'-' 없이 숫자만 입력해주세요. </small><br> -->
-            
-            
-            <div class="member_type">
-                <label for="{{ form.member_type.id_for_label }}">User type</label><br>
-                <label>
-                    <input type="radio" id="{{ form.member_type.id_for_label }}"
-                        name="{{ form.member_type.html_name }}"
-                        value="Customer" {% if form.member_type.value == 'Customer' %}checked{% endif %}>
-                    고객(customer)
-                </label>
-                <label>
-                    <input type="radio" id="{{ form.member_type.id_for_label }}"
-                        name="{{ form.member_type.html_name }}"
-                        value="Counselor" {% if form.member_type.value == 'Counselor' %}checked{% endif %}>
-                    상담사(counselor)
-                </label>
-            </div>
-            
-            <div class="nation">
-                <label for="{{ form.nation.id_for_label }}">Language</label><br>
-                <select id="{{ form.nation.id_for_label }}" name="{{ form.nation.html_name }}" required>
-                    {% for choice in form.nation.field.choices %}
-                        <option value="{{ choice.0 }}" {% if form.nation.value == choice.0 %}selected{% endif %}>
-                            {{ choice.1 }}
-                        </option>
-                    {% endfor %}
-                </select><br>
-            </div>
-
-            <!-- {% for field in form %}
-            <div class="form-group {% if field.errors %}has-error{% endif %}">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
-                {{ field }}
-                {% if field.errors %}
-                <div class="help-block">
-                    {% for error in field.errors %}
-                    {{ error }}
-                    {% endfor %}
+            <form id="signup-form" method="POST" onsubmit="return validateForm()">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <label for="{{ form.username.id_for_label }}" class="form-label">Username</label><br>
+                  <input type="text" id="{{ form.username.id_for_label }}" class="form-control" name="{{ form.username.html_name }}" maxlength="150" placeholder="Enter your username" required><br>
+                  <small>use only letters, numbers and @/./+/-/_ in 50 characters.</small><br>
                 </div>
-                {% endif %}
+                
+                <div class="mb-3 form-password-toggle">
+                  <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label><br>
+                  <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" placeholder="Enter your password" required><br>
+                  <small>at least 8 characters which combined with upper/lower, numeric and special </small><br>    
+                </div>
+
+                <div class="mb-3">
+                  <label for="{{ form.password2.id_for_label }}" class="form-label">Check Password</label><br>
+                  <input type="password" class="form-control" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" placeholder="Check your password" required><br>
+                </div>
+
+                <div class="mb-3">
+                  <label for="{{ form.email.id_for_label }}" class="form-label">Email address</label><br>
+                  <input type="email" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" placeholder="Enter your Email address" required><br>
+                </div>
+
+                <div class="mb-3">
+                  <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone number</label><br>
+                  <input type="text" class="form-control" id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.html_name }}" placeholder="01012345678" required><br>
+                </div>
+
+                <div class="mb-3">
+                  <div class="member_type">
+                    <label for="{{ form.member_type.id_for_label }}" class="form-label">User type</label><br>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check" name="{{ form.member_type.html_name }}" id="btnradio1" value="Customer" {% if form.member_type.value == 'Customer' %}checked{% endif %} autocomplete="off" />
+                      <label class="btn btn-outline-primary" for="btnradio1">고객(customer)</label>
+                      <input type="radio" class="btn-check" name="{{ form.member_type.html_name }}" id="btnradio2" value="Counselor" {% if form.member_type.value == 'Counselor' %}checked{% endif %} autocomplete="off" />
+                      <label class="btn btn-outline-primary" for="btnradio2">상담사(counselor)</label>
+                    </div>
+                </div>
+                </div>
+                
+
+                <div class="mb-3">
+                  <div class="nation">
+                    <label for="{{ form.nation.id_for_label }}" class="form-label">Language</label><br>
+                      <select id="{{ form.nation.id_for_label }}" class="btn btn-outline-primary" name="{{ form.nation.html_name }}" required>
+                          {% for choice in form.nation.field.choices %}
+                              <option value="{{ choice.0 }}" {% if form.nation.value == choice.0 %}selected{% endif %}>
+                                  {{ choice.1 }}
+                              </option>
+                          {% endfor %}
+                      </select><br>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                    <label class="form-check-label" for="terms-conditions">
+                      I agree to
+                      <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#modalLong">privacy policy & terms</a>
+                    </label>
+                  </div>
+                </div>
+                <button class="btn btn-primary d-grid w-100">Sign up</button>
+              </form>
+
+              <p class="text-center">
+                <span>Already have an account?</span>
+                <a href="/accounts/login/">
+                  <span>Login.</span>
+                </a>
+              </p>
             </div>
-            {% endfor %} -->
-            
-            <input type="submit" value="Sign up">
-        </form>
-
-        <div class="login-container">
-            <p class="p1">Already have an account?</p>
-            <p class="p2"><a href="/accounts/login/">Login.</a></p>
+          </div>
+          <!-- Register Card -->
+          
+          
         </div>
+      </div>
     </div>
-    {% endblock %}
 
-    <script src="{% static 'js/signup.js' %}"></script>
-    <!-- <script>
-        // 입력 필드에 에러가 있을 경우, 해당 필드에 에러 표시 클래스를 추가합니다.
-        var form = document.getElementById("signup-form");
-        var fields = form.getElementsByClassName("form-group");
-        for (var i = 0; i < fields.length; i++) {
-            var field = fields[i];
-            if (field.getElementsByClassName("help-block").length > 0) {
-                field.classList.add("has-error");
-            }
-        }
-    </script> -->
-</body>
+    <!-- / Content -->
+
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{% static "assets/vendor/libs/jquery/jquery.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/popper/popper.js" %}"></script>
+    <script src="{% static "assets/vendor/js/bootstrap.js" %}"></script>
+    <script src="{% static "assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js" %}"></script>
+
+    <script src="{% static "assets/vendor/js/menu.js" %}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="{% static "assets/js/main1.js" %}"></script>
+
+    <!-- Page JS -->
+    <script src="{% static "assets/js/ui-modals.js" %}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
 </html>
-

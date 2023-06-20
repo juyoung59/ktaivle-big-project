@@ -236,17 +236,17 @@
         let endTime;
     
         function updateCallDuration() {
-            const duration = new Date() - start_Time;
+            const duration = new Date() - startTime;
             const seconds = Math.floor(duration / 1000);
             const minutes = Math.floor(seconds / 60);
             const remainingSeconds = seconds % 60;
             
             const callDurationElement = document.getElementById("callDuration");
-            callDurationElement.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            // callDurationElement.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
     
         function startCallDuration() {
-            start_Time = new Date();
+            startTime = new Date();
             setInterval(updateCallDuration, 1000);
         }
     
@@ -273,16 +273,15 @@
     <script src="{% static "assets/js/theme.js" %}"></script>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
         $(document).ready(function() {
             setInterval(updateTranscript, 1000);  // 1초마다 텍스트 업데이트 함수 호출
 
             function updateTranscript() {
                 $.ajax({
-                    url: '/update_transcript/',  // 업데이트를 처리할 Django 뷰 함수의 URL
+                    url: '/voice/',  // 업데이트를 처리할 Django 뷰 함수의 URL
                     success: function(response) {
-                        $('#transcriptText').text(response);  // <pre> 요소에 텍스트 업데이트
+                        $('#transcriptText').text(response); 
                     }
                 });
             }

@@ -12,185 +12,17 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
     <script src="{% static 'js/mypage.js' %}"></script>
-    
-    <style>
-        body {
-            width: 100%;
-            height: 100vh;
-            margin: 0px;    
-            padding: 0px;
-            background-color: #FFFFFF;
-        }
 
-        header {
-            width: 100%;
-            height: 85px;
-            background-color: white;
-            color: black;
-            margin-bottom: 15px;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-            padding: 0;
-        }
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
 
-        header>nav {
-            margin: 0 auto;
-            padding: 20px 20px;
-        }
-
-        header>nav>label {
-            font-family: 'Righteous';
-            font-weight:bold;
-            font-size: 32px;
-            color: black;
-        }
-
-        header>nav>ul {
-            font-family: 'Noto Sans KR', sans-serif;
-            float: right;
-            font-size: 24px;
-            margin-top: -5px;
-            margin-right: 15px;
-            color: black;
-        }
-
-        header>nav>ul>li {
-            float: left;
-            list-style: none;
-            margin-left: 20px;
-        }
-
-        header>nav>ul>li>a {
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-            font-family: Roboto;
-        }
-
-        .wrap{
-            max-width:1200px;
-        }
-
-        .wrap a{
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .wrap a:hover{
-            color: inherit;
-        }
-
-        .contents {
-            display: block;
-            min-height: calc(100% - 12vh);
-            align-items: center;
-            width: 100%;
-            margin: 0 auto;    
-        }
-
-        .p1_div a{
-            text-decoration: none;
-            color: inherit;
-        }
-        .p1_div a:hover{
-            color: inherit;
-        }
-
-        .p1_div {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        .p1{
-            height: 52px;
-            margin: 10px 50px;
-
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 30px;
-            line-height: 47px;
-
-            color: #000000;
-        }
-
-        .delete_form{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            margin: 10px 50px;
-
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 25px;
-            line-height: 35px;
-
-            color: #6D6D6D;
-        }
-        
-        .delete_detail {
-            display: flex;
-            justify-content: space-between;
-        }
-        .delete_detail>label {
-            margin: 0px;
-        }
-        .delete_detail>input {
-            border-radius: 10px;
-            padding: 5px;
-            font-size: 15px;
-        }
-        .delete_detail>small {
-            font-size: 12px;
-            margin: 0px;
-        }
-        .invalid-feedback {
-            color: red;
-            font-size: 15px;
-        }
-        
-        .ck_label {
-            margin-left: auto;
-        }
-        .ck_label>span {
-            font-size: 15px;
-        }
-
-        .btn {
-            display: flex;
-            margin: 10px 0px;
-            justify-content: flex-end;
-        }
-
-        .delete-button{
-            width: 150px;
-            height: 50px;
-            font-family: Roboto;
-            font-size: 20px;
-            border-radius: 10px;
-            background-color:white;
-            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-        }
-        .delete-button:hover:enabled {
-            background-color: #D9D9D9;
-            color: #000000;
-        }
-
-        footer {
-            height: 12vh; 
-            background-color: #f8f8f8;
-            padding: 20px;
-            text-align: center;
-            margin: 0;
-            margin-top: 5vh;
-        }
-        footer>p{
-            margin: 0;
-            text-align: center;
-        }
-    </style>
+    <link rel="canonical" href="https://codepen.io/vinutv/pen/dyGbpjN" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css'>
+    <script>
+    window.console = window.console || function(t) {};
+    </script>
 
     <script type="text/javascript">
         function checkDisable(form) {
@@ -201,83 +33,107 @@
             }
         }
     </script>
+    
 </head>
-<body>
-    <header>
-        <nav class="wrap">
-            <label>
-                <a href="/">
-                    <strong>
-                        Consulting
-                    </strong>
-                </a>
-            </label>
-            <!-- ul>li*3>a -->
-            <ul>            
-                {% if request.user.is_authenticated %}
-                    <li><a href="/mypage">{{ request.user.username }}</a></li>
-                    <li><a href="/">home</a></li>
-                    <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
-                {% else %}
-                    <li><a href="/">home</a></li>
-                    <li><a class="nav-link" href="/accounts/login/">login</a></li>
-                    <li><a class="nav-link" href="/accounts/signup/">signup</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
 
-    <main class="contents">
-        <div class="p1_div">
-            <p class="p1"><a href="/mypage">MyPage</a> > <a href="/mypage/delete">withdrawal from membership</a></p>
-        </div>
+<body translate="no">
+  <header>
+      <nav class="wrap">
+          <label>
+              <a href="/">
+                  <strong>
+                      Consulting
+                  </strong>
+              </a>
+          </label>
+          <!-- ul>li*3>a -->
+          <ul>            
+              {% if request.user.is_authenticated %}
+                  <li><a href="/mypage">{{ request.user.username }}</a></li>
+                  <li><a href="/">home</a></li>
+                  <li><a class="nav-link" href="/accounts/logout/">logout</a></li>
+              {% else %}
+                  <li><a href="/">home</a></li>
+                  <li><a class="nav-link" href="/accounts/login/">login</a></li>
+                  <li><a class="nav-link" href="/accounts/signup/">signup</a></li>
+              {% endif %}
+          </ul>
+      </nav>
+  </header>
 
-        <form method="POST" class="delete_form" id="DeleteForm" name="DeleteForm">
-            {% csrf_token %}
-            <div class="delete_detail">
-                <p>
-                    <strong>{{ request.user.username }}</strong> 회원님의 계정이 삭제됩니다.<br>
-                    탈퇴시 개인정보 및 이용정보가 삭제되며 복구할 수 없습니다.<br>
-                    본인의 비밀번호를 입력한 후 하단의 유의사항 동의에 체크하세요.
-                </p>
+  <main class="contents">
+      <div class="p1_div">
+          <p class="p1"><a href="/mypage">MyPage</a> > <a href="/mypage/delete">withdrawal from membership</a></p>
+      </div>
+
+      <form method="POST" class="delete_form" id="DeleteForm" name="DeleteForm">
+          {% csrf_token %}
+
+          <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center">
+  
+            <div class="fixed inset-0">
+              <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
             </div>
-
-            <div class="delete_detail">
-                <label name="label_password" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
-                <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="Enter your password" required>
-            </div>
-            
-            <div class="delete_detail">
-                <small>
-                    본인인증을 위해 비밀번호를 입력해주세요.
-                </small>
-
-                {% if form.password.errors %}
-                    <script type="text/javascript">
-                        document.getElementsByName('password')[0].setAttribute('class', 'form-control is-invalid')
-                    </script>
-                    {% for error in form.password.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-
-            <div class="delete_detail">
-                <div class="ck_label"> 
-                    <input type="checkbox" name="ck" onClick="checkDisable(this.form)">
-                    <span>유의사항 동의</span>
+          
+            <div class="relative bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+              <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+                <button type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none" aria-label="Close">
+                  <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="sm:flex sm:items-start">
+                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-200 sm:mx-0 sm:h-10 sm:w-10">
+                  <svg class="h-6 w-6 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                  </svg>
                 </div>
+                <div class="mt-3 sm:mt-0 sm:ml-4">
+                  <h3 class="text-lg text-center sm:text-left font-semibold" id="modal-headline">
+                    Delete account
+                  </h3>
+                  <div class="delete_detail text-sm text-center sm:text-left text-gray-700">
+                    <p>
+                        <strong>{{ request.user.username }}</strong> 회원님의 계정이 삭제됩니다.<br>
+                        탈퇴시 개인정보 및 이용정보가 삭제되며 복구할 수 없습니다.<br>
+                        본인의 비밀번호를 입력한 후 하단의 유의사항 동의에 체크하세요.
+                    </p>
             </div>
 
-            <div class="btn">
-                <input class="delete-button" type="submit" value="Delete" name="delete_btn" disabled="true">
-            </div>
-        </form>
+          <div class="delete_detail block text-sm font-semibold">
+              <label name="label_password" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+              <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" placeholder="Enter your password" required class="appearance-none block text-sm w-full shadow-sm border border-gray-400 rounded px-4 py-2 my-2 leading-relaxed focus:outline-none focus:border-gray-500">
+          </div>
+          
+          <div class="delete_detail">
+              <small>
+                  본인인증을 위해 비밀번호를 입력해주세요.
+              </small>
 
-    <footer>
-        <p>All rights reserved. ©KT AIVLESCHOOL 14</p>
-    </footer>
+              {% if form.password.errors %}
+                  <script type="text/javascript">
+                      document.getElementsByName('password')[0].setAttribute('class', 'form-control is-invalid')
+                  </script>
+                  {% for error in form.password.errors %}
+                  <div class="invalid-feedback">
+                      {{ error }}
+                  </div>
+                  {% endfor %}
+              {% endif %}
+          </div>
+
+          <div class="delete_detail">
+              <div class="ck_label"> 
+                  <input type="checkbox" name="ck" onClick="checkDisable(this.form)">
+                  <span>유의사항 동의</span>
+              </div>
+          </div>
+
+          <div class="btn">
+              <input class="delete-button inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus:outline-none" type="submit" value="Delete" name="delete_btn" disabled="true">
+          </div>
+      </form>
 </body>
+
 </html>

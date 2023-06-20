@@ -7,12 +7,13 @@ NATION = (('Korean', 'Korean'), ('English', 'English'), ('Japanese', 'Japanese')
           ('Chinese', 'Chinese'), ('Vietnamese', 'Vietnamese'), ('Thai', 'Thai'))
 
 class CustomerChangeForm(UserChangeForm):
+    image = forms.ImageField(label="image")
     email = forms.EmailField(label='Email Address')
     phone_number = forms.CharField(label='Phone Number', max_length=11)
     nation = forms.ChoiceField(label='Language', choices=NATION)
     class Meta:
         model = get_user_model()
-        fields = ['email', 'phone_number', 'nation']
+        fields = ['image', 'email', 'phone_number', 'nation']
         
 class CheckPasswordForm(forms.Form):
     password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
