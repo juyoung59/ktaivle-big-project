@@ -2,13 +2,13 @@ from django.shortcuts import render,redirect,HttpResponse
 from accounts.models import User
 from django.utils import timezone
 from .models import Voice
-from . import slang_mic
+# from . import slang_mic
 
 # from __future__ import division
 
 import re
 import sys
-from google.cloud import speech
+# from google.cloud import speech
 import pyaudio
 from six.moves import queue
 
